@@ -2,7 +2,7 @@
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J821KUJ)
 
 # IW4ToDiscord plugin for IW4MAdmin
-![iwtodiscord](https://i.ibb.co/q9qrBn6/pjimage-2-1.jpg)
+![iwtodiscord](https://i.ibb.co/f9FfXYD/Hnet-com-image-1.jpg) ![iwtodiscord](https://i.ibb.co/0Q6PNxD/Hnet-com-image.jpg)
 ## Introduction
 This plugin is based on the idea of the YADB plugin but with some extra features like:
 - Improve the appearance of the embeds (bans and reports).
