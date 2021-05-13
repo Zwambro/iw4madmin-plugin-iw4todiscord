@@ -7,7 +7,7 @@
 This plugin is based on the idea of the YADB plugin but with some extra features like:
 - Improve the appearance of the embeds (bans and reports).
 - Showing Unban event too on discord.
-- You can see online admins discord in report webhook.
+- You can see online admins in report webhook.
 
 ## Installation
 1. Remove **YADB.dll** plugin from Plugins folder (take a backup of this plugin first).
