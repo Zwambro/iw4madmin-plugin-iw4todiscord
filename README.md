@@ -3,6 +3,10 @@
 
 # IW4ToDiscord plugin for IW4MAdmin
 ![iwtodiscord](https://i.ibb.co/f9FfXYD/Hnet-com-image-1.jpg) ![iwtodiscord](https://i.ibb.co/0Q6PNxD/Hnet-com-image.jpg)
+
+## Requirement
+- You may need IW4MAdmin version `2021.5.15.3` or later.
+
 ## Introduction
 This plugin is based on the idea of the YADB plugin but with some extra features like:
 - Improve the appearance of the embeds (bans and reports).
@@ -12,11 +16,23 @@ This plugin is based on the idea of the YADB plugin but with some extra features
 ## Installation
 1. Remove **YADB.dll** plugin from Plugins folder (take a backup of this plugin first).
 2. Copy/past **IW4ToDiscord.js** plugin to __IW4MAdmin/plugins__ directory.
-3. Open **IW4ToDiscord.js**, and copy your bans discord webhook in `bans_webhook: "PAST_YOUR_BANS_CHANNEL_WEBHOOK_HERE"` *(replace `"PAST_YOUR_BANS_CHANNEL_WEBHOOK_HERE"` with your bans discord webhook)*.
-4. Past your report discord webhook in `reports_webhook: "PAST_YOUR_REPORTS_CHANNEL_WEBHOOK_HERE"` *(replace `"PAST_YOUR_REPORTS_CHANNEL_WEBHOOK_HERE"` with your discord discord webhook)*.
-5. Past your servers status discord webhook in `serverstatus_webhook: "PAST_YOUR_SERVERS-STATUS_CHANNEL_WEBHOOK_HERE"` *(replace `"PAST_YOUR_SERVERS-STATUS_CHANNEL_WEBHOOK_HERE"` with your discord discord webhook)*.
+3. restart IW4MAdmin.
+4. Create a Webhook for: Game Reports channel, Game Bans channel, and Server Status channel, on your discord.
+5. Open `IW4MAdmin/Configuration/ScriptPluginSettings.json`, you'll see something like:
+  ```
+  "IW4ToDiscord": {
+    "Author": "Zwambro",
+    "Version": 1.1,
+    "ReportWebhook": "PASTREPORTDISCORDWEBHOOKHERE",
+    "BansWebhook": "PASTBANSDISCORDWEBHOOKHERE",
+    "ServerStatusWebhook": "PASTSERVERSTATUSDISCORDWEBHOOKHERE"
+  }
+  ```
+6. Replace `PASTREPORTDISCORDWEBHOOKHERE` with your Report Channel webhook, and replace `PASTBANSDISCORDWEBHOOKHERE` with Ban Channel webhook, and `PASTSERVERSTATUSDISCORDWEBHOOKHERE` with your Server Status Channel webhook. save the new configs.
+7. Have fun.
 
 ### Special thanks and acknowledgements
 - DANGER clan for testing.
 - [Xerxes](https://github.com/xerxes-at) for YADB plugin.
 - IW4Madmin developers.
+- Miltan aka WatchMiltan.
