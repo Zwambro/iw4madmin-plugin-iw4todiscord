@@ -1,24 +1,11 @@
 var plugin = {
     author: 'Zwambro',
-    version: 1.0,
-    name: 'Plugin to send certain IW4MAdmin events to discord',
-
-    // 
-    bans_webhook: "PAST_YOUR_BANS_CHANNEL_WEBHOOK_HERE",
-    reports_webhook: "PAST_YOUR_REPORTS_CHANNEL_WEBHOOK_HERE",
-    serverstatus_webhook: "PAST_YOUR_SERVERS-STATUS_CHANNEL_WEBHOOK_HERE",
-
-    // Enable or disable ban/kick/tempban/unban events
-    enableBans: true,
-
-    // Enable or disable Report event
-    enableReports: true,
-
-    // Enable or disable servers status
-    enableServersStatus: true,
+    version: 1.1,
+    name: 'IW4ToDiscord',
 
     manager: null,
     logger: null,
+    configHandler: null,
 
 
     sendBansWebHook: function (embed) {
@@ -27,7 +14,7 @@ var plugin = {
                 "embeds": [embed]
             }
             var client1 = new System.Net.Http.HttpClient();
-            var result1 = client1.PostAsync(this.bans_webhook, new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
+            var result1 = client1.PostAsync(this.getBansDiscordWebhookConf(), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
             var resCl1 = result1.Content;
             resCl1.Dispose();
             result1.Dispose();
@@ -43,7 +30,7 @@ var plugin = {
                 "embeds": [embed]
             }
             var client1 = new System.Net.Http.HttpClient();
-            var result1 = client1.PostAsync(this.reports_webhook, new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
+            var result1 = client1.PostAsync(this.getReportDiscordWebhookConf(), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
             var resCl1 = result1.Content;
             resCl1.Dispose();
             result1.Dispose();
@@ -59,7 +46,7 @@ var plugin = {
                 "embeds": [embed]
             }
             var client1 = new System.Net.Http.HttpClient();
-            var result1 = client1.PostAsync(this.serverstatus_webhook, new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
+            var result1 = client1.PostAsync(this.serverstatusDiscordWebhookValue(), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
             var resCl1 = result1.Content;
             resCl1.Dispose();
             result1.Dispose();
@@ -618,14 +605,38 @@ var plugin = {
 
     getAdmiName: function (gameEvent, basURL) {
         var adminname = "";
-
         if (gameEvent.Origin.CleanedName == "IW4MAdmin") {
             adminname = "`IW4MAdmin`";
         } else {
-            adminname = "[`" + gameEvent.Origin.CleanedName + "`](" + basURL + "client/profileasync/" + gameEvent.Origin.ClientId + ")";
+            adminname = "[`" + gameEvent.Origin.CleanedName + "` @" + gameEvent.Origin.ClientId + "](" + basURL + "client/profileasync/" + gameEvent.Origin.ClientId + ")";
         }
         return adminname;
-
+    },
+    getTargetName: function (gameEvent, basURL) {
+        var target = "";
+        target = "[`" + gameEvent.Target.CleanedName + "` @" + gameEvent.Target.ClientId + "](" + basURL + "client/profileasync/" + gameEvent.Target.ClientId + ")";
+        return target;
+    },
+    getReportDiscordWebhookConf: function () {
+        var reportDiscordWebhookValue = this.configHandler.GetValue("ReportWebhook");
+        if (!reportDiscordWebhookValue) {
+            this.configHandler.SetValue("ReportWebhook", "PASTREPORTDISCORDWEBHOOKHERE");
+        }
+        return reportDiscordWebhookValue;
+    },
+    getBansDiscordWebhookConf: function () {
+        var bansDiscordWebhookValue = this.configHandler.GetValue("BansWebhook");
+        if (!bansDiscordWebhookValue) {
+            this.configHandler.SetValue("BansWebhook", "PASTBANSDISCORDWEBHOOKHERE");
+        }
+        return bansDiscordWebhookValue;
+    },
+    getServerStatusDiscordWebhookConf: function () {
+        var serverstatusDiscordWebhookValue = this.configHandler.GetValue("ServerStatusWebhook");
+        if (!serverstatusDiscordWebhookValue) {
+            this.configHandler.SetValue("ServerStatusWebhook", "PASTSERVERSTATUSDISCORDWEBHOOKHERE");
+        }
+        return serverstatusDiscordWebhookValue;
     },
     onEventAsync: function (gameEvent, server) {
 
@@ -633,6 +644,7 @@ var plugin = {
         var game = "";
         var authUrl = "";
         var color = "";
+
         if ((!basURL.endsWith("/"))) {
             basURL += "/";
         }
@@ -680,9 +692,6 @@ var plugin = {
         }
 
         if (gameEvent.Type != 3 && gameEvent.Type != 6 && gameEvent.Type === 12) {
-            if (!this.enableServersStatus) {
-                return;
-            }
             embed = {
                 "title": "Servers Status",
                 "description": "Lost connection to **" + server.Hostname.replace(/\^[0-9:;c]/g, "") + "**",
@@ -696,9 +705,6 @@ var plugin = {
             this.sendServersStatusWebHook(embed);
         }
         if (gameEvent.Type === 13) {
-            if (!this.enableServersStatus) {
-                return;
-            }
             embed1 = {
                 "title": "Servers Status",
                 "description": "Restored connection to **" + server.Hostname.replace(/\^[0-9:;c]/g, "") + "**",
@@ -712,11 +718,7 @@ var plugin = {
             this.sendServersStatusWebHook(embed1);
         }
         if (gameEvent.Type === 103) {
-            if (!this.enableReports) {
-                return;
-            }
             var admins = "";
-
             server.GetClientsAsList().forEach(function (players) {
                 if (players.Level > 1 && !players.Masked) {
                     admins += "" + players.CleanedName.toString() + ", ";
@@ -730,7 +732,7 @@ var plugin = {
                     "name": game,
                     "icon_url": authUrl
                 },
-                "description": "" + this.getAdmiName(gameEvent, basURL) + " Reported [`" + gameEvent.Target.CleanedName + "` @" + gameEvent.Target.ClientId + "](" + basURL + "client/profileasync/" + gameEvent.Target.ClientId + ")",
+                "description": "" + this.getAdmiName(gameEvent, basURL) + " Reported " + this.getTargetName(gameEvent, basURL),
                 "timestamp": new Date(),
                 "color": color,
                 "footer": {
@@ -754,15 +756,12 @@ var plugin = {
             this.sendReportsWebHook(embed2);
         }
         if (gameEvent.Type === 106) {
-            if (!this.enableBans) {
-                return;
-            }
             embed3 = {
                 "author": {
                     "name": game,
                     "icon_url": authUrl
                 },
-                "description": "" + this.getAdmiName(gameEvent, basURL) + " Kicked [`" + gameEvent.Target.CleanedName + "` @" + gameEvent.Target.ClientId + "](" + basURL + "client/profileasync/" + gameEvent.Target.ClientId + ")",
+                "description": "" + this.getAdmiName(gameEvent, basURL) + " Kicked " + this.getTargetName(gameEvent, basURL),
                 "timestamp": new Date(),
                 "color": 15466496,
                 "fields": [{
@@ -780,15 +779,12 @@ var plugin = {
             this.sendBansWebHook(embed3);
         }
         if (gameEvent.Type === 107) {
-            if (!this.enableBans) {
-                return;
-            }
             embed4 = {
                 "author": {
                     "name": game,
                     "icon_url": authUrl
                 },
-                "description": "" + this.getAdmiName(gameEvent, basURL) + " Temp-Banned [`" + gameEvent.Target.CleanedName + "` @" + gameEvent.Target.ClientId + "](" + basURL + "client/profileasync/" + gameEvent.Target.ClientId + ")",
+                "description": "" + this.getAdmiName(gameEvent, basURL) + " Temp Banned " + this.getTargetName(gameEvent, basURL),
                 "timestamp": new Date(),
                 "color": 15466496,
                 "fields": [{
@@ -811,15 +807,12 @@ var plugin = {
             this.sendBansWebHook(embed4);
         }
         if (gameEvent.Type === 108) {
-            if (!this.enableBans) {
-                return;
-            }
             embed5 = {
                 "author": {
                     "name": game,
                     "icon_url": authUrl
                 },
-                "description": "" + this.getAdmiName(gameEvent, basURL) + " Banned [`" + gameEvent.Target.CleanedName + "` @" + gameEvent.Target.ClientId + "](" + basURL + "client/profileasync/" + gameEvent.Target.ClientId + ")",
+                "description": "" + this.getAdmiName(gameEvent, basURL) + " Banned " + this.getTargetName(gameEvent, basURL),
                 "timestamp": new Date(),
                 "color": 15466496,
                 "fields": [{
@@ -842,15 +835,12 @@ var plugin = {
             this.sendBansWebHook(embed5);
         }
         if (gameEvent.Type === 109) {
-            if (!this.enableBans) {
-                return;
-            }
             embed6 = {
                 "author": {
                     "name": game,
                     "icon_url": authUrl
                 },
-                "description": "" + this.getAdmiName(gameEvent, basURL) + " Unbanned [`" + gameEvent.Target.CleanedName + "` @" + gameEvent.Target.ClientId + "](" + basURL + "client/profileasync/" + gameEvent.Target.ClientId + ")",
+                "description": "" + this.getAdmiName(gameEvent, basURL) + " Unbanned " + this.getTargetName(gameEvent, basURL),
                 "timestamp": new Date(),
                 "color": 15132390,
                 "footer": {
@@ -864,6 +854,24 @@ var plugin = {
     onLoadAsync: function (manager) {
         this.manager = manager;
         this.logger = manager.GetLogger(0);
+        this.configHandler = _configHandler;
+
+        this.configHandler.SetValue("Author", this.author);
+        this.configHandler.SetValue("Version", this.version);
+
+        var reportWebhook = this.configHandler.GetValue("ReportWebhook");
+        var bansWebhook = this.configHandler.GetValue("BansWebhook");
+        var serverStatusWebhook = this.configHandler.GetValue("ServerStatusWebhook");
+
+        if (!reportWebhook) {
+            this.configHandler.SetValue("ReportWebhook", "PASTREPORTDISCORDWEBHOOKHERE");
+        }
+        if (!bansWebhook) {
+            this.configHandler.SetValue("BansWebhook", "PASTBANSDISCORDWEBHOOKHERE");
+        }
+        if (!serverStatusWebhook) {
+            this.configHandler.SetValue("ServerStatusWebhook", "PASTSERVERSTATUSDISCORDWEBHOOKHERE");
+        }
     },
 
     onUnloadAsync: function () {},
