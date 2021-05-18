@@ -61,11 +61,11 @@ var plugin = {
 
         if (server.GameName === 1) {
             if (server.CurrentMap.Name == "mp_convoy") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/3c/Bare_Load_Screen_Ambush_CoD4.jpg/revision/latest/scale-to-width-down/1000?cb=20100723075603';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/3c/Bare_Load_Screen_Ambush_CoD4.jpg/revision/latest?cb=20100723075603';
             } else if (server.CurrentMap.Name == "mp_backlot") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/0f/Backlot_loadscreen_CoD4.jpg/revision/latest/scale-to-width-down/1000?cb=20100723075613';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/0f/Backlot_loadscreen_CoD4.jpg/revision/latest?cb=20100723075613';
             } else if (server.CurrentMap.Name == "mp_bloc") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9d/Bare_Load_Screen_Bloc_CoD4.jpg/revision/latest/scale-to-width-down/1000?cb=20100723075638';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9d/Bare_Load_Screen_Bloc_CoD4.jpg/revision/latest?cb=20100723075638';
             } else if (server.CurrentMap.Name == "mp_bog") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/29/Bog_Map_Image_CoD4.jpg/revision/latest?cb=20100723075648';
             } else if (server.CurrentMap.Name == "mp_countdown") {
@@ -93,125 +93,125 @@ var plugin = {
             } else if (server.CurrentMap.Name == "mp_cargoship") {
                 iconUrl = 'https://www.gamegrin.com/assets/Uploads/_resampled/resizedimage640400-Cod4-map-wetwork.jpg';
             } else if (server.CurrentMap.Name == "mp_crash_snow") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/f/f7/Bare_Load_Screen_Winter_Crash_CoD4.jpg/revision/latest/scale-to-width-down/1000?cb=20100723080720';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/f/f7/Bare_Load_Screen_Winter_Crash_CoD4.jpg/revision/latest?cb=20100723080720';
             } else if (server.CurrentMap.Name == "mp_broadcast") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/ec/Broadcast_loading_screen_CoD4.jpg/revision/latest/scale-to-width-down/1000?cb=20100723080927';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/ec/Broadcast_loading_screen_CoD4.jpg/revision/latest?cb=20100723080927';
             } else if (server.CurrentMap.Name == "mp_creek") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/e1/CreekCOD4.jpg/revision/latest/scale-to-width-down/1000?cb=20100723075941';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/e1/CreekCOD4.jpg/revision/latest?cb=20100723075941';
             } else if (server.CurrentMap.Name == "mp_carentan") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/0c/ChinatownCOD4.jpg/revision/latest/scale-to-width-down/1000?cb=20110727174233';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/0c/ChinatownCOD4.jpg/revision/latest?cb=20110727174233';
             } else if (server.CurrentMap.Name == "mp_killhouse") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/48/Cod4-killhouse.jpg/revision/latest/scale-to-width-down/1000?cb=20100723081127';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/48/Cod4-killhouse.jpg/revision/latest?cb=20100723081127';
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
         } else if (server.GameName === 2) {
             if (server.CurrentMap.Name == "mp_rust") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/33/Rust.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174413';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/33/Rust.jpg/revision/latest?cb=20100720174413';
             } else if (server.CurrentMap.Name == "mp_terminal") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/14/Bare_Load_Screen_Terminal_MW2.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174519';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/14/Bare_Load_Screen_Terminal_MW2.jpg/revision/latest?cb=20100720174519';
             } else if (server.CurrentMap.Name == "mp_crash") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9f/Bare_Load_Screen_Crash_MW2.jpg/revision/latest/scale-to-width-down/1000?cb=20100613115705';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9f/Bare_Load_Screen_Crash_MW2.jpg/revision/latest?cb=20100613115705';
             } else if (server.CurrentMap.Name == "mp_afghan") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/8/83/Afghan_loading_screen_MW2.png/revision/latest/scale-to-width-down/640?cb=20130310131229';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/8/83/Afghan_loading_screen_MW2.png/revision/latest?cb=20130310131229';
             } else if (server.CurrentMap.Name == "mp_derail") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/20/Derail.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174408';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/20/Derail.jpg/revision/latest?cb=20100720174408';
             } else if (server.CurrentMap.Name == "mp_estate") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/91/Estate.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174409';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/91/Estate.jpg/revision/latest?cb=20100720174409';
             } else if (server.CurrentMap.Name == "mp_favela") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/29/Favela_Map_MW2.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174410';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/29/Favela_Map_MW2.jpg/revision/latest?cb=20100720174410';
             } else if (server.CurrentMap.Name == "mp_highrise") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/49/Highrise-promo.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174411';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/49/Highrise-promo.jpg/revision/latest?cb=20100720174411';
             } else if (server.CurrentMap.Name == "mp_invasion") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/95/Invasion_MW2.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174410';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/95/Invasion_MW2.jpg/revision/latest?cb=20100720174410';
             } else if (server.CurrentMap.Name == "mp_checkpoint") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9f/Karachi-prev.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174412';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9f/Karachi-prev.jpg/revision/latest?cb=20100720174412';
             } else if (server.CurrentMap.Name == "mp_quarry") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/8/8a/Loadscreen_mp_quarry.jpg/revision/latest/scale-to-width-down/1000?cb=20091207173135';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/8/8a/Loadscreen_mp_quarry.jpg/revision/latest?cb=20091207173135';
             } else if (server.CurrentMap.Name == "mp_rundown") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/3a/Rundown-prev.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174412';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/3a/Rundown-prev.jpg/revision/latest?cb=20100720174412';
             } else if (server.CurrentMap.Name == "mp_boneyard") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/ef/Scrapyard.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174413';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/ef/Scrapyard.jpg/revision/latest?cb=20100720174413';
             } else if (server.CurrentMap.Name == "mp_nightshift") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d2/Skidrow.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174516';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d2/Skidrow.jpg/revision/latest?cb=20100720174516';
             } else if (server.CurrentMap.Name == "mp_subbase") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/1e/Sub_Base.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174517';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/1e/Sub_Base.jpg/revision/latest?cb=20100720174517';
             } else if (server.CurrentMap.Name == "mp_underpass") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/b/b5/Underpass.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174519';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/b/b5/Underpass.jpg/revision/latest?cb=20100720174519';
             } else if (server.CurrentMap.Name == "mp_brecourt") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/cc/Wasteland.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174520';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/cc/Wasteland.jpg/revision/latest?cb=20100720174520';
             } else if (server.CurrentMap.Name == "mp_overgrown") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/7/7d/Bare_Load_Screen_Overgrown_CoD4.jpg/revision/latest/scale-to-width-down/1000?cb=20110727174104';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/7/7d/Bare_Load_Screen_Overgrown_CoD4.jpg/revision/latest?cb=20110727174104';
             } else if (server.CurrentMap.Name == "mp_strike") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/b/b0/Loadscreen_mp_strike.jpg/revision/latest/scale-to-width-down/1000?cb=20100712195725';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/b/b0/Loadscreen_mp_strike.jpg/revision/latest?cb=20100712195725';
             } else if (server.CurrentMap.Name == "mp_vacant") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/67/Loadscreen_mp_vacant.jpg/revision/latest/scale-to-width-down/1000?cb=20100712195617';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/67/Loadscreen_mp_vacant.jpg/revision/latest?cb=20100712195617';
             } else if (server.CurrentMap.Name == "mp_abandon") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/c3/Carnival_loadscreen.jpg/revision/latest/scale-to-width-down/1000?cb=20100712195429';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/c3/Carnival_loadscreen.jpg/revision/latest?cb=20100712195429';
             } else if (server.CurrentMap.Name == "mp_trailerpark") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/cf/Trailer_Park.jpg/revision/latest/scale-to-width-down/1000?cb=20100712195448';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/cf/Trailer_Park.jpg/revision/latest?cb=20100712195448';
             } else if (server.CurrentMap.Name == "mp_fuel2") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/de/Fuel_loadscreen.jpg/revision/latest/scale-to-width-down/1000?cb=20100712195521';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/de/Fuel_loadscreen.jpg/revision/latest?cb=20100712195521';
             } else if (server.CurrentMap.Name == "mp_storm") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/60/MW2_Storm.jpg/revision/latest/scale-to-width-down/1000?cb=20100613115722';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/60/MW2_Storm.jpg/revision/latest?cb=20100613115722';
             } else if (server.CurrentMap.Name == "mp_complex") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/0e/MW2_Bailout.jpg/revision/latest/scale-to-width-down/1000?cb=20100613115812';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/0e/MW2_Bailout.jpg/revision/latest?cb=20100613115812';
             } else if (server.CurrentMap.Name == "mp_compact") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d7/MW2_Salvage.jpg/revision/latest/scale-to-width-down/1000?cb=20100613115824';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d7/MW2_Salvage.jpg/revision/latest?cb=20100613115824';
             } else if (server.CurrentMap.Name == "mp_nuked") {
                 iconUrl = 'https://i.ytimg.com/vi/ysr0CyyJx8E/maxresdefault.jpg';
             } else if (server.CurrentMap.Name == "iw4_credits") {
                 iconUrl = 'https://i.ytimg.com/vi/VniF3DnE5uk/maxresdefault.jpg';
             } else if (server.CurrentMap.Name == "mp_killhouse") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/48/Cod4-killhouse.jpg/revision/latest/scale-to-width-down/1000?cb=20100723081127';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/48/Cod4-killhouse.jpg/revision/latest?cb=20100723081127';
             } else if (server.CurrentMap.Name == "mp_bog_sh") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/29/Bog_Map_Image_CoD4.jpg/revision/latest/scale-to-width-down/1000?cb=20100723075648';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/29/Bog_Map_Image_CoD4.jpg/revision/latest?cb=20100723075648';
             } else if (server.CurrentMap.Name == "mp_cargoship_sh") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d4/Cargo_loadscreen_BOII.png/revision/latest/scale-to-width-down/1000?cb=20130120072815';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d4/Cargo_loadscreen_BOII.png/revision/latest?cb=20130120072815';
             } else if (server.CurrentMap.Name == "mp_cargoship") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d4/Cargo_loadscreen_BOII.png/revision/latest/scale-to-width-down/1000?cb=20130120072815';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d4/Cargo_loadscreen_BOII.png/revision/latest?cb=20130120072815';
             } else if (server.CurrentMap.Name == "mp_shipment") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9b/Shipment_Load.jpg/revision/latest/scale-to-width-down/1000?cb=20100723080524';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9b/Shipment_Load.jpg/revision/latest?cb=20100723080524';
             } else if (server.CurrentMap.Name == "mp_shipment_long") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9b/Shipment_Load.jpg/revision/latest/scale-to-width-down/1000?cb=20100723080524';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9b/Shipment_Load.jpg/revision/latest?cb=20100723080524';
             } else if (server.CurrentMap.Name == "mp_rust_long") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/33/Rust.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174413';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/33/Rust.jpg/revision/latest?cb=20100720174413';
             } else if (server.CurrentMap.Name == "mp_firingrange") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/8/82/Bare_Load_Screen_Firing_Range_BO.jpg/revision/latest/scale-to-width-down/1000?cb=20110303121918';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/8/82/Bare_Load_Screen_Firing_Range_BO.jpg/revision/latest?cb=20110303121918';
             } else if (server.CurrentMap.Name == "mp_storm_spring") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/60/MW2_Storm.jpg/revision/latest/scale-to-width-down/1000?cb=20100613115722';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/60/MW2_Storm.jpg/revision/latest?cb=20100613115722';
             } else if (server.CurrentMap.Name == "mp_fav_tropical") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/29/Favela_Map_MW2.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174410';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/29/Favela_Map_MW2.jpg/revision/latest?cb=20100720174410';
             } else if (server.CurrentMap.Name == "mp_estate_tropical") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/91/Estate.jpg/revision/latest/scale-to-width-down/1000?cb=20100720174409';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/91/Estate.jpg/revision/latest?cb=20100720174409';
             } else if (server.CurrentMap.Name == "mp_crash_tropical") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9f/Bare_Load_Screen_Crash_MW2.jpg/revision/latest/scale-to-width-down/1000?cb=20100613115705';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9f/Bare_Load_Screen_Crash_MW2.jpg/revision/latest?cb=20100613115705';
             } else if (server.CurrentMap.Name == "mp_bloc_sh") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9d/Bare_Load_Screen_Bloc_CoD4.jpg/revision/latest/scale-to-width-down/1000?cb=20100723075638';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9d/Bare_Load_Screen_Bloc_CoD4.jpg/revision/latest?cb=20100723075638';
             } else if (server.CurrentMap.Name == "mp_cross_fire") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/5/53/Cod4_map_crossfire.jpg/revision/latest/scale-to-width-down/1000?cb=20100723075954';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/5/53/Cod4_map_crossfire.jpg/revision/latest?cb=20100723075954';
             } else if (server.CurrentMap.Name == "mp_bloc") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9d/Bare_Load_Screen_Bloc_CoD4.jpg/revision/latest/scale-to-width-down/1000?cb=20100723075638';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9d/Bare_Load_Screen_Bloc_CoD4.jpg/revision/latest?cb=20100723075638';
             } else if (server.CurrentMap.Name == "oilrig") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/30/Mg_oilrig.jpg/revision/latest/scale-to-width-down/480?cb=20120716172859';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/30/Mg_oilrig.jpg/revision/latest480?cb=20120716172859';
             } else if (server.CurrentMap.Name == "co_hunted") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/f/f4/Bare_Load_Screen_Village_MW3.png/revision/latest/scale-to-width-down/1000?cb=20120320235505';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/f/f4/Bare_Load_Screen_Village_MW3.png/revision/latest?cb=20120320235505';
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
         } else if (server.GameName === 3) {
             if (server.CurrentMap.Name == "mp_seatown") {
-                iconUrl = "https://static.wikia.nocookie.net/callofduty/images/a/a7/Bare_Load_Screen_Seatown_MW3.png/revision/latest/scale-to-width-down/1000?cb=20120320235504";
+                iconUrl = "https://static.wikia.nocookie.net/callofduty/images/a/a7/Bare_Load_Screen_Seatown_MW3.png/revision/latest?cb=20120320235504";
             } else if (server.CurrentMap.Name == "mp_alpha") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/a6/Lockdown_loading_screen_MW3.PNG/revision/latest/scale-to-width-down/1000?cb=20130728192041';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/a6/Lockdown_loading_screen_MW3.PNG/revision/latest?cb=20130728192041';
             } else if (server.CurrentMap.Name == "mp_bravo") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/20/Bare_Load_Screen_Mission_MW3.png/revision/latest/scale-to-width-down/1000?cb=20120320235416';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/20/Bare_Load_Screen_Mission_MW3.png/revision/latest?cb=20120320235416';
             } else if (server.CurrentMap.Name == "mp_carbon") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/c8/Bare_Load_Screen_Carbon_MW3.png/revision/latest?cb=20120320235417';
             } else if (server.CurrentMap.Name == "mp_dome") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/f/f1/Bare_Load_Screen_Dome_MW3.png/revision/latest/scale-to-width-down/1000?cb=20120320235417';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/f/f1/Bare_Load_Screen_Dome_MW3.png/revision/latest?cb=20120320235417';
             } else if (server.CurrentMap.Name == "mp_plaza2") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/65/Bare_Loading_Screen_Arkaden_MW3.png/revision/latest/scale-to-width-down/1000?cb=20120519230749';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/65/Bare_Loading_Screen_Arkaden_MW3.png/revision/latest?cb=20120519230749';
             } else if (server.CurrentMap.Name == "mp_exchange") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/5/52/Bare_Load_Screen_Downturn_MW3.png/revision/latest?cb=20120320235418';
             } else if (server.CurrentMap.Name == "mp_bootleg") {
@@ -401,57 +401,57 @@ var plugin = {
             }
         } else if (server.GameName === 6) {
             if (server.CurrentMap.Name == "mp_array") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/35/Bare_Load_Screen_Array_BO.jpg/revision/latest?cb=20110303121651';
             } else if (server.CurrentMap.Name == "mp_berlinwall2") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/7/78/Berlin_Wall_loadscreen_BO.jpg/revision/latest?cb=20121108093747';
             } else if (server.CurrentMap.Name == "mp_gridlock") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/7/7a/Recreated_Load_Screen_Convoy_BO.jpg/revision/latest?cb=20110606062753';
             } else if (server.CurrentMap.Name == "mp_cracked") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/1e/Bare_Load_Screen_Cracked_BO.jpg/revision/latest?cb=20110303121738';
             } else if (server.CurrentMap.Name == "mp_crisis") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/f/f6/Bare_Load_Screen_Crisis_BO.jpg/revision/latest?cb=20110303121824';
             } else if (server.CurrentMap.Name == "mp_discovery") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/09/Discovery_loadscreen_BO.jpg/revision/latest?cb=20121108094733';
             } else if (server.CurrentMap.Name == "mp_drivein") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9e/Galactic_Sign_Drive-In_BO.png/revision/latest?cb=20120118175649';
             } else if (server.CurrentMap.Name == "mp_firingrange") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/8/82/Bare_Load_Screen_Firing_Range_BO.jpg/revision/latest?cb=20110303121918';
             } else if (server.CurrentMap.Name == "mp_duga") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/41/Bare_Load_Screen_Grid_BO.jpg/revision/latest?cb=20110303122000';
             } else if (server.CurrentMap.Name == "mp_area51") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/a2/Hangar_18_loadscreen_BO.png/revision/latest?cb=20130714193416';
             } else if (server.CurrentMap.Name == "mp_hanoi") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/eb/Bare_Load_Screen_Hanoi_BO.jpg/revision/latest?cb=20110303122041';
             } else if (server.CurrentMap.Name == "mp_cairo") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/e7/Bare_Load_Screen_Havana_BO.jpg/revision/latest?cb=20110303122124';
             } else if (server.CurrentMap.Name == "mp_golfcourse") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/48/Overview_Hazard_BO.png/revision/latest?cb=20120119064515';
             } else if (server.CurrentMap.Name == "mp_hotel") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/ca/Bare_Load_Screen_Hotel_BO.png/revision/latest?cb=20110617143724';
             } else if (server.CurrentMap.Name == "mp_havoc") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/c6/Bare_Load_Screen_Jungle_BO.jpg/revision/latest?cb=20110303122217';
             } else if (server.CurrentMap.Name == "mp_kowloon") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/a7/Kowloon_loadscreen_BO.jpg/revision/latest?cb=20121108094415';
             } else if (server.CurrentMap.Name == "mp_cosmodrome") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/c6/Bare_Load_Screen_Launch_BO.jpg/revision/latest?cb=20110303122251';
             } else if (server.CurrentMap.Name == "mp_nuked") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://i.ytimg.com/vi/ysr0CyyJx8E/maxresdefault.jpg';
             } else if (server.CurrentMap.Name == "mp_radiation") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/20/Bare_Load_Screen_Radiation_BO.jpg/revision/latest?cb=20110303122417';
             } else if (server.CurrentMap.Name == "mp_silo") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/a7/Warhead_Silo_BO.png/revision/latest?cb=20120121223541';
             } else if (server.CurrentMap.Name == "mp_stadium") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/24/Stadium_loadscreen_BO.jpg/revision/latest?cb=20121108092948';
             } else if (server.CurrentMap.Name == "mp_outskirts") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/2d/Bare_Load_Screen_Stockpile_BO.jpg/revision/latest?cb=20110605094802';
             } else if (server.CurrentMap.Name == "mp_mountain") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/5/54/Bare_Load_Screen_Summit_BO.jpg/revision/latest?cb=20110303122702';
             } else if (server.CurrentMap.Name == "mp_villa") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/2a/Bare_Load_Screen_Villa_BO.jpg/revision/latest?cb=20110303122503';
             } else if (server.CurrentMap.Name == "mp_russianbase") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/12/Bare_Load_Screen_WMD_BO.jpg/revision/latest?cb=20110303122544';
             } else if (server.CurrentMap.Name == "mp_zoo") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/7/78/Recreated_Load_Screen_Zoo_BO.jpg/revision/latest?cb=20110606065905';
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
@@ -537,63 +537,63 @@ var plugin = {
             }
         } else if (server.GameName === 8) {
             if (server.CurrentMap.Name == "mp_apartments") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/41/Evac_Map_Preview_BO3.png/revision/latest?cb=20200804015812';
             } else if (server.CurrentMap.Name == "mp_biodome") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/a8/Aquarium_Map_Preview_BO3.png/revision/latest?cb=20200804014624';
             } else if (server.CurrentMap.Name == "mp_chinatown") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/aa/Exodus_Map_Preview_BO3.png/revision/latest?cb=20200804015813';
             } else if (server.CurrentMap.Name == "mp_ethiopia") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/5/50/Hunted_menu_icon_BO3.jpg/revision/latest?cb=20180311204011';
             } else if (server.CurrentMap.Name == "mp_havoc") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/17/Havoc_Map_Preview_BO3.png/revision/latest?cb=20200804002228';
             } else if (server.CurrentMap.Name == "mp_infection") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9a/Infection_Map_Preview_BO3.png/revision/latest?cb=20200804015817';
             } else if (server.CurrentMap.Name == "mp_metro") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/60/Metro_Map_Preview_BO3.png/revision/latest?cb=20200804015818';
             } else if (server.CurrentMap.Name == "mp_redwood") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/18/Redwood_Map_Preview_BO3.png/revision/latest?cb=20200804015819';
             } else if (server.CurrentMap.Name == "mp_sector") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/7/7e/Combine_Map_Preview_BO3.png/revision/latest?cb=20200804015811';
             } else if (server.CurrentMap.Name == "mp_spire") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/e8/Breach_Map_Preview_BO3.png/revision/latest?cb=20200804015810';
             } else if (server.CurrentMap.Name == "mp_stronghold") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/42/Stronghold_Map_Preview_BO3.png/revision/latest?cb=20200804022135';
             } else if (server.CurrentMap.Name == "mp_veiled") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/ee/Fringe_Map_Preview_BO3.png/revision/latest?cb=20200804015814';
             } else if (server.CurrentMap.Name == "mp_nuketown_x") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/ef/Nuk3town_menu_icon_BO3.jpg/revision/latest?cb=20180523201916';
             } else if (server.CurrentMap.Name == "mp_crucible") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/7/79/Gauntlet_Loading_Screen_BO3.png/revision/latest?cb=20160131214452';
             } else if (server.CurrentMap.Name == "mp_rise") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/7/79/Rise_Loading_Screen_BO3.png/revision/latest?cb=20160131214729';
             } else if (server.CurrentMap.Name == "mp_skyjacked") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/4d/Skyjacked_menu_icon_BO3.jpg/revision/latest?cb=20180523010428';
             } else if (server.CurrentMap.Name == "mp_waterpark") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/e0/Splash_Loading_Screen_BO3.png/revision/latest?cb=20160131214058';
             } else if (server.CurrentMap.Name == "mp_aerospace") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/47/Spire_menu_icon_BO3.jpg/revision/latest?cb=20180523013350';
             } else if (server.CurrentMap.Name == "mp_banzai") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/12/Verge_menu_icon_BO3.jpg/revision/latest?cb=20180523011351';
             } else if (server.CurrentMap.Name == "mp_conduit") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/5/59/Rift_menu_icon_BO3.jpg/revision/latest?cb=20180523205348';
             } else if (server.CurrentMap.Name == "mp_kung_fu") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/6e/Knockout_menu_icon_BO3.jpg/revision/latest?cb=20180523012843';
             } else if (server.CurrentMap.Name == "mp_arena") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/f/f9/Rumble_menu_icon_BO3.jpg/revision/latest?cb=20180311222050';
             } else if (server.CurrentMap.Name == "mp_cryogen") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/da/Screen_Shot_2018-03-27_at_15.26.07.png/revision/latest?cb=20180401121336';
             } else if (server.CurrentMap.Name == "mp_rome") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/8/80/Empire_Map_Icon_BOIII.jpg/revision/latest?cb=20160812181614';
             } else if (server.CurrentMap.Name == "mp_shrine") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/f/fc/Screen_Shot_2018-04-01_at_13.43.54.png/revision/latest?cb=20180401124753';
             } else if (server.CurrentMap.Name == "mp_city") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/0e/Rupture_BOIII.jpeg/revision/latest?cb=20160825190008';
             } else if (server.CurrentMap.Name == "mp_miniature") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/e1/Micro_Loading_Screen_BO3.png/revision/latest?cb=20170612151647';
             } else if (server.CurrentMap.Name == "mp_ruins") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/cc/Screen_Shot_2018-04-01_at_13.44.50.png/revision/latest?cb=20180401143041';
             } else if (server.CurrentMap.Name == "mp_western") {
-                iconUrl = 'https://steamuserimages-a.akamaihd.net/ugc/863988638212339129/C9EB9FF7B11F17932561FCFE67810F0E42E9FFAF/';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/25/Outlaw_BOIII.jpeg/revision/latest?cb=20160825185938';
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
@@ -658,6 +658,14 @@ var plugin = {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/e2/Swarm_artwork_AW.png/revision/latest?cb=20150727184217';
             } else if (server.CurrentMap.Name == "mp_urban") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/5/52/Urban_Environment_AW.jpg/revision/latest?cb=20150116235245';
+            } else if (server.CurrentMap.Name == "mp_zombie_ark") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/db/Outbreak_Environment_AW.jpg/revision/latest?cb=20150116235718';
+            } else if (server.CurrentMap.Name == "mp_zombie_brg") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/2e/Infection_environment_AW.jpg/revision/latest?cb=20150318181252';
+            } else if (server.CurrentMap.Name == "mp_zombie_h2o") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/b/bd/Carrier_Ingame_Icon_AW.jpg/revision/latest?cb=20180805025428';
+            } else if (server.CurrentMap.Name == "mp_zombie_lab") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d9/ExoZombies_Descent_AW.jpg/revision/latest?cb=20150803181055';
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
