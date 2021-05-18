@@ -429,7 +429,7 @@ var plugin = {
             } else if (server.CurrentMap.Name == "mp_hotel") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/ca/Bare_Load_Screen_Hotel_BO.png/revision/latest?cb=20110617143724';
             } else if (server.CurrentMap.Name == "mp_havoc") {
-                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/17/Havoc_Map_Preview_BO3.png/revision/latest?cb=20200804002228';
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/c6/Bare_Load_Screen_Jungle_BO.jpg/revision/latest?cb=20110303122217';
             } else if (server.CurrentMap.Name == "mp_kowloon") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/a7/Kowloon_loadscreen_BO.jpg/revision/latest?cb=20121108094415';
             } else if (server.CurrentMap.Name == "mp_cosmodrome") {
