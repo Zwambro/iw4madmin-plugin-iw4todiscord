@@ -739,27 +739,27 @@ var plugin = {
             color = 39219;
         } else if (server.eventParser.Name === "IW6x Parser") {
             game = "IW6x";
-            authUrl = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/26fef988-18ad-48d8-a2a7-863b56ff376f/d7ccksp-ef2e9553-f841-4d0b-b84a-d32acfec22d3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI2ZmVmOTg4LTE4YWQtNDhkOC1hMmE3LTg2M2I1NmZmMzc2ZlwvZDdjY2tzcC1lZjJlOTU1My1mODQxLTRkMGItYjg0YS1kMzJhY2ZlYzIyZDMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.RH0ORneDCfkwCQZlCxEfywboloy4j_8b7ABfA_3l5nQ";
+            authUrl = "https://i.gyazo.com/82b84341e141f6420db6c6ef1d9037bb.png";
             color = 39321;
         } else if (server.eventParser.Name === "Plutonium T4 Parser") {
             game = "PlutoT4";
-            authUrl = "https://aux3.iconspalace.com/uploads/673716477224553414.png";
+            authUrl = "https://i.gyazo.com/1e1987d84038aae38610cab9c999868d.png";
             color = 7829308;
         } else if (server.eventParser.Name === "RektT5m Parser") {
             game = "RektT5M";
-            authUrl = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/8678cecb-9a26-4eba-91ba-a768c9e7ebf0/d9gfn65-39ecb111-e20e-4d48-8b00-825d40f19698.png";
+            authUrl = "https://i.gyazo.com/a8a22764fafd4cc178329717b9bb35dd.png";
             color = 6064778;
         } else if (server.eventParser.Name === "Plutonium T6 Parser") {
             game = "PlutoT6";
-            authUrl = "https://i.pinimg.com/originals/5a/44/5c/5a445c5c733c698b32732550ec797e91.jpg";
+            authUrl = "https://i.gyazo.com/5a445c5c733c698b32732550ec797e91.png";
             color = 15108608;
         } else if (server.eventParser.Name === "Black Ops 3 Parser") {
             game = "Call of Duty: Black Ops III";
-            authUrl = "https://cdn.imgbin.com/8/11/19/imgbin-call-of-duty-advanced-warfare-call-of-duty-united-offensive-call-of-duty-black-ops-call-of-duty-modern-warfare-2-call-of-duty-modern-warfare-3-others-SvSR3WX8D3DjpHw2Pv7uwZ8e1.jpg";
+            authUrl = "https://i.gyazo.com/5691ca84d47e219cdec76901ff142159.png";
             color = 16737792;
         } else if (server.eventParser.Name === "S1x Parser") {
             game = "SHG1";
-            authUrl = "https://img.utdstc.com/icon/245/d52/245d52392811b3ed9f0a0dadb463a94cb5069811867551476e94d3efeec08f4b:200";
+            authUrl = "https://i.gyazo.com/d524bf93e1fc38fa46f8fe1ed5162493.png";
             color = 13421568;
         }
 
