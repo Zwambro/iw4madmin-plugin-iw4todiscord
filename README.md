@@ -14,7 +14,7 @@ This plugin is based on the idea of the YADB plugin but with some extra features
 - You can see online admins in report webhook.
 
 ## Installation
-1. Remove **YADB.dll** plugin from Plugins folder (take a backup of this plugin first).
+1. Remove **YADB.dll** plugin from Plugins folder if you have it (take a backup of this plugin first).
 2. Copy/past **IW4ToDiscord.js** plugin to __IW4MAdmin/plugins__ directory.
 3. restart IW4MAdmin.
 4. Create a Webhook for: Game Reports channel, Game Bans channel, and Server Status channel, on your discord.
@@ -32,7 +32,7 @@ This plugin is based on the idea of the YADB plugin but with some extra features
 7. Have fun.
 
 ### Special thanks and acknowledgements
-- DANGER clan for testing.
+- [DANGER](https://discord.gg/NJx9Khb) clan for testing.
 - [Xerxes](https://github.com/xerxes-at) for YADB plugin.
 - IW4Madmin developers.
 - Miltan aka WatchMiltan.
