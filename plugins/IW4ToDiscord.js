@@ -78,6 +78,22 @@ var plugin = {
         }
     },
 
+    sendChatlogWebHook: function (embed) {
+        try {
+            var params = {
+                "embeds": [embed]
+            }
+            var client1 = new System.Net.Http.HttpClient();
+            var result1 = client1.PostAsync(this.getChatlogDiscordWebhookConf(), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
+            var resCl1 = result1.Content;
+            resCl1.Dispose();
+            result1.Dispose();
+            client1.Dispose();
+        } catch (e) {
+            this.logger.WriteWarning('There was a problem sending this webhook: ' + e.message);
+        }
+    },
+
     getMapThumb: function (server) {
         var iconUrl = "";
 
@@ -714,23 +730,30 @@ var plugin = {
     getReportDiscordWebhookConf: function () {
         var reportDiscordWebhookValue = this.configHandler.GetValue("ReportWebhook");
         if (!reportDiscordWebhookValue) {
-            this.configHandler.SetValue("ReportWebhook", "PASTREPORTDISCORDWEBHOOKHERE");
+            this.configHandler.SetValue("ReportWebhook", "your_report_webhook_url");
         }
         return reportDiscordWebhookValue;
     },
     getBansDiscordWebhookConf: function () {
         var bansDiscordWebhookValue = this.configHandler.GetValue("BansWebhook");
         if (!bansDiscordWebhookValue) {
-            this.configHandler.SetValue("BansWebhook", "PASTBANSDISCORDWEBHOOKHERE");
+            this.configHandler.SetValue("BansWebhook", "your_bans_webhook_url");
         }
         return bansDiscordWebhookValue;
     },
     getServerStatusDiscordWebhookConf: function () {
         var serverstatusDiscordWebhookValue = this.configHandler.GetValue("ServerStatusWebhook");
         if (!serverstatusDiscordWebhookValue) {
-            this.configHandler.SetValue("ServerStatusWebhook", "PASTSERVERSTATUSDISCORDWEBHOOKHERE");
+            this.configHandler.SetValue("ServerStatusWebhook", "your_status_webhook_url");
         }
         return serverstatusDiscordWebhookValue;
+    },
+    getChatlogDiscordWebhookConf: function () {
+        var chatlogDiscordWebhookValue = this.configHandler.GetValue("ChatlogWebhook");
+        if (!chatlogDiscordWebhookValue) {
+            this.configHandler.SetValue("ChatlogWebhook", "your_chatlog_webhook_url");
+        }
+        return chatlogDiscordWebhookValue;
     },
     onEventAsync: function (gameEvent, server) {
 
@@ -943,6 +966,22 @@ var plugin = {
             }
             this.sendBansWebHook(embed6);
         }
+        if (gameEvent.Type === 100) {
+            embed7 = {
+                "author": {
+                    "name": game,
+                    "icon_url": authUrl
+                },
+                "title": gameEvent.Origin.CleanedName,
+                "description": gameEvent.Data.replace(/\^[0-9:;c]/g, ""),
+                "timestamp": new Date(),
+                "color": 3564200,
+                "footer": {
+                    "text": server.Hostname.replace(/\^[0-9:;c]/g, "")
+                }
+            }
+            this.sendChatlogWebHook(embed7);
+        }
     },
 
     onLoadAsync: function (manager) {
@@ -956,15 +995,19 @@ var plugin = {
         var reportWebhook = this.configHandler.GetValue("ReportWebhook");
         var bansWebhook = this.configHandler.GetValue("BansWebhook");
         var serverStatusWebhook = this.configHandler.GetValue("ServerStatusWebhook");
+        var chatlogWebhook = this.configHandler.GetValue("ChatlogWebhook");
 
         if (!reportWebhook) {
-            this.configHandler.SetValue("ReportWebhook", "PASTREPORTDISCORDWEBHOOKHERE");
+            this.configHandler.SetValue("ReportWebhook", "your_report_webhook_url");
         }
         if (!bansWebhook) {
-            this.configHandler.SetValue("BansWebhook", "PASTBANSDISCORDWEBHOOKHERE");
+            this.configHandler.SetValue("BansWebhook", "your_bans_webhook_url");
         }
         if (!serverStatusWebhook) {
-            this.configHandler.SetValue("ServerStatusWebhook", "PASTSERVERSTATUSDISCORDWEBHOOKHERE");
+            this.configHandler.SetValue("ServerStatusWebhook", "your_status_webhook_url");
+        }
+        if (!chatlogWebhook) {
+            this.configHandler.SetValue("ChatlogWebhook", "your_chatlog_webhook_url");
         }
     },
 
