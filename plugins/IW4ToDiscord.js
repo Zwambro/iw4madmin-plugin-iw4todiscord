@@ -22,7 +22,7 @@ SOFTWARE.
 
 var plugin = {
     author: 'Zwambro',
-    version: 1.1,
+    version: 1.2,
     name: 'IW4ToDiscord',
 
     manager: null,

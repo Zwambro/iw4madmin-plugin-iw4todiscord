@@ -23,12 +23,13 @@ This plugin is based on the idea of the YADB plugin but with some extra features
   "IW4ToDiscord": {
     "Author": "Zwambro",
     "Version": 1.1,
-    "ReportWebhook": "PASTREPORTDISCORDWEBHOOKHERE",
-    "BansWebhook": "PASTBANSDISCORDWEBHOOKHERE",
-    "ServerStatusWebhook": "PASTSERVERSTATUSDISCORDWEBHOOKHERE"
+    "ReportWebhook": "your_report_webhook_url",
+    "BansWebhook": "your_bans_webhook_url",
+    "ServerStatusWebhook": "your_status_webhook_url",
+    "ChatlogWebhook": "your_chatlog_webhook_url"
   }
   ```
-6. Replace `PASTREPORTDISCORDWEBHOOKHERE` with your Report Channel webhook, and replace `PASTBANSDISCORDWEBHOOKHERE` with Ban Channel webhook, and `PASTSERVERSTATUSDISCORDWEBHOOKHERE` with your Server Status Channel webhook. save the new configs.
+6. Replace `your_report_webhook_url` with your Report Channel webhook, and replace `your_bans_webhook_url` with Ban Channel webhook, and `your_status_webhook_url` with your Server Status Channel webhook, and replace `your_chatlog_webhook_url` with Chatlog Channel webhook, save the new configs.
 7. Have fun.
 
 ### Special thanks and acknowledgements
