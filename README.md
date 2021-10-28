@@ -2,7 +2,23 @@
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J821KUJ)
 
 # IW4ToDiscord plugin for IW4MAdmin
-![iwtodiscord](https://i.ibb.co/f9FfXYD/Hnet-com-image-1.jpg) ![iwtodiscord](https://i.ibb.co/0Q6PNxD/Hnet-com-image.jpg)
+Bans log
+![iwtodiscord](https://i.ibb.co/KwrrySD/imageonline-co-merged-image-5.png)
+
+Reports log
+![iwtodiscord](https://i.ibb.co/4F9pQFw/imageonline-co-merged-image-6.png)
+
+Chats log
+![iwtodiscord](https://i.ibb.co/QkwTBDj/imageonline-co-merged-image-7.png)
+
+Servers Status log
+
+![iwtodiscord](https://i.ibb.co/GRM2nHL/imageonline-co-merged-image-8.png)
+
+Unban logs
+
+![iwtodiscord](https://i.ibb.co/27S54QZ/Screenshot-from-2021-10-28-21-04-35.png)
+
 
 ## Requirement
 - You may need IW4MAdmin version `2021.5.15.3` or later.
