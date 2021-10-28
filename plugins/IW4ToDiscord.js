@@ -22,7 +22,7 @@ SOFTWARE.
 
 var plugin = {
     author: 'Zwambro',
-    version: 1.2,
+    version: 1.21,
     name: 'IW4ToDiscord',
 
     manager: null,
@@ -722,6 +722,71 @@ var plugin = {
         }
         return adminname;
     },
+    timeFormat: function (gameEvent) {
+        var time = gameEvent.Extra.toString()
+        var seConds = "";
+        var miNutes = "";
+        var houRs = "";
+        var daYs = "";
+        var timeSplited = "";
+
+        if (time.includes(".")) {
+            timeSplited = time.split(/[.:]+/);
+            if ((timeSplited[timeSplited.length - 1] < 60) && (timeSplited[timeSplited.length - 1] != 0)) {
+                if (timeSplited[timeSplited.length - 1] == 1) {
+                    seConds = timeSplited[timeSplited.length - 1] + " second ";
+                } else {
+                    seConds = timeSplited[timeSplited.length - 1] + " seconds";
+                }
+            }
+            if ((timeSplited[timeSplited.length - 2] < 60) && (timeSplited[timeSplited.length - 2] != 0)) {
+                if (timeSplited[timeSplited.length - 2] == 1) {
+                    miNutes = timeSplited[timeSplited.length - 2] + " minute ";
+                } else {
+                    miNutes = timeSplited[timeSplited.length - 2] + " minutes";
+                }
+            }
+            if ((timeSplited[timeSplited.length - 3] < 24) && (timeSplited[timeSplited.length - 3] != 0)) {
+                if (timeSplited[timeSplited.length - 3] == 1) {
+                    houRs = timeSplited[timeSplited.length - 3] + " hour ";
+                } else {
+                    houRs = timeSplited[timeSplited.length - 3] + " hours ";
+                }
+            }
+            if (timeSplited[timeSplited.length - 4]) {
+                if (timeSplited[timeSplited.length - 4] == 1) {
+                    daYs = timeSplited[timeSplited.length - 4] + " day ";
+                } else {
+                    daYs = timeSplited[timeSplited.length - 4] + " days ";
+                }
+            }
+        } else {
+            timeSplited = time.split(":");
+            if ((timeSplited[timeSplited.length - 1] < 60) && (timeSplited[timeSplited.length - 1] != 0)) {
+                if (timeSplited[timeSplited.length - 1] == 1) {
+                    seConds = timeSplited[timeSplited.length - 1] + " second";
+                } else {
+                    seConds = timeSplited[timeSplited.length - 1] + " seconds";
+                }
+            }
+            if ((timeSplited[timeSplited.length - 2] < 60) && (timeSplited[timeSplited.length - 2] != 0)) {
+                if (timeSplited[timeSplited.length - 2] == 1) {
+                    miNutes = timeSplited[timeSplited.length - 2] + " minute ";
+                } else {
+                    miNutes = timeSplited[timeSplited.length - 2] + " minutes";
+                }
+            }
+            if ((timeSplited[timeSplited.length - 3] < 24) && (timeSplited[timeSplited.length - 3] != 0)) {
+                if (timeSplited[timeSplited.length - 3] == 1) {
+                    houRs = timeSplited[timeSplited.length - 3] + " hour ";
+                } else {
+                    houRs = timeSplited[timeSplited.length - 3] + " hours ";
+                }
+            }
+        }
+        var duRation = daYs.replace(/^0+/, '') + houRs.replace(/^0+/, '') + miNutes.replace(/^0+/, '') + seConds.replace(/^0+/, '');
+        return duRation;
+    },
     getTargetName: function (gameEvent, basURL) {
         var target = "";
         target = "[`" + gameEvent.Target.CleanedName + "` @" + gameEvent.Target.ClientId + "](" + basURL + "client/profileasync/" + gameEvent.Target.ClientId + ")";
@@ -807,19 +872,20 @@ var plugin = {
             authUrl = "https://i.gyazo.com/d524bf93e1fc38fa46f8fe1ed5162493.png";
             color = 13421568;
         }
-
-        if (gameEvent.Type != 3 && gameEvent.Type != 6 && gameEvent.Type === 12) {
-            embed = {
-                "title": "Servers Status",
-                "description": "Lost connection to **" + server.Hostname.replace(/\^[0-9:;c]/g, "") + "**",
-                "timestamp": new Date(),
-                "color": 15073280,
-                "author": {
-                    "name": game,
-                    "icon_url": authUrl
-                },
+        if (gameEvent.Type < 13) {
+            if (gameEvent.Type != 3 && gameEvent.Type != 6 && gameEvent.Type === 12) {
+                embed = {
+                    "title": "Servers Status",
+                    "description": "Lost connection to **" + server.Hostname.replace(/\^[0-9:;c]/g, "") + "**",
+                    "timestamp": new Date(),
+                    "color": 15073280,
+                    "author": {
+                        "name": game,
+                        "icon_url": authUrl
+                    },
+                }
+                this.sendServersStatusWebHook(embed);
             }
-            this.sendServersStatusWebHook(embed);
         }
         if (gameEvent.Type === 13) {
             embed1 = {
@@ -916,7 +982,7 @@ var plugin = {
                     },
                     {
                         "name": "Duration",
-                        "value": gameEvent.Extra.toString(),
+                        "value": this.timeFormat(gameEvent),
                         "inline": true
                     },
                 ]
