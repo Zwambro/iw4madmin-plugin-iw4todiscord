@@ -22,7 +22,7 @@ SOFTWARE.
 
 var plugin = {
     author: 'Zwambro',
-    version: 1.21,
+    version: 1.3,
     name: 'IW4ToDiscord',
 
     manager: null,
@@ -310,8 +310,16 @@ var plugin = {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/2a/Bare_ELITE_Calendar_Vortex_MW3.jpg/revision/latest?cb=20120624135437';
             } else if (server.CurrentMap.Name == "mp_terminal_cls") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/68/Terminal_Loading_Screen_MW3.png/revision/latest?cb=20120826091508';
+            } else if (server.CurrentMap.Name == "mp_rust") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/33/Rust.jpg/revision/latest?cb=20100720174413';
             } else if (server.CurrentMap.Name == "mp_highrise") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/49/Highrise-promo.jpg/revision/latest?cb=20100720174411';
+            } else if (server.CurrentMap.Name == "mp_favela") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/29/Favela_Map_MW2.jpg/revision/latest?cb=20100720174410';
+            } else if (server.CurrentMap.Name == "mp_nuked") {
+                iconUrl = 'https://i.ytimg.com/vi/ysr0CyyJx8E/maxresdefault.jpg';
+            } else if (server.CurrentMap.Name == "mp_nightshift") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d2/Skidrow.jpg/revision/latest?cb=20100720174516';
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
@@ -707,6 +715,80 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+        } else if (server.GameName === 10) {
+            if (server.CurrentMap.Name == "ar_baggage") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/3/35/Csgo_ar_baggage.png/revision/latest/scale-to-width-down/1000?cb=20120422195558';
+            } else if (server.CurrentMap.Name == "ar_dizzy") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/2/20/Ar_dizzy_thumbnail.jpg/revision/latest/scale-to-width-down/1000?cb=20170610032801';
+            } else if (server.CurrentMap.Name == "ar_lunacy") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/c/ca/Ar_lunacy.png/revision/latest/scale-to-width-down/1000?cb=20191119180902';
+            } else if (server.CurrentMap.Name == "ar_monastery") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/e/e1/Ar_monastery.png/revision/latest/scale-to-width-down/1000?cb=20201203223644';
+            } else if (server.CurrentMap.Name == "ar_shoots") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/2/23/Shoots-overview.png/revision/latest/scale-to-width-down/1000?cb=20210831221835';
+            } else if (server.CurrentMap.Name == "cs_agency") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/c/c7/Cs_agency_thumbnail.jpg/revision/latest/scale-to-width-down/1000?cb=20170610042527';
+            } else if (server.CurrentMap.Name == "cs_assault") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/0/00/Cs_assault_go.png/revision/latest/scale-to-width-down/1000?cb=20140819095651';
+            } else if (server.CurrentMap.Name == "cs_italy") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/2/2c/Cs_italy_csgo.png/revision/latest/scale-to-width-down/1000?cb=20140819100829';
+            } else if (server.CurrentMap.Name == "cs_militia") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/2/2b/Csgo_militia_pic1.jpg/revision/latest/scale-to-width-down/1000?cb=20190123130803';
+            } else if (server.CurrentMap.Name == "cs_office") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/f/f7/Csgo-cs-office.png/revision/latest/scale-to-width-down/1000?cb=20140820132335';
+            } else if (server.CurrentMap.Name == "de_ancient") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/9/94/De_ancient.png/revision/latest/scale-to-width-down/1000?cb=20201204072600';
+            } else if (server.CurrentMap.Name == "de_bank") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/a/a9/Csgo-de-bank.png/revision/latest/scale-to-width-down/1000?cb=20140820131729';
+            } else if (server.CurrentMap.Name == "de_cache") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/5/5b/De_cache.png/revision/latest/scale-to-width-down/1000?cb=20200415102625';
+            } else if (server.CurrentMap.Name == "de_calavera") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/2/24/EozeThnXYAouxrf.jpg/revision/latest/scale-to-width-down/1000?cb=20210116194812';
+            } else if (server.CurrentMap.Name == "de_canals") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/5/56/De_canals_thumbnail.jpg/revision/latest/scale-to-width-down/1000?cb=20170316114745';
+            } else if (server.CurrentMap.Name == "de_cbble") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/f/f1/De_cbble_loading_screen.jpg/revision/latest/scale-to-width-down/1000?cb=20210828112634';
+            } else if (server.CurrentMap.Name == "de_dust2") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/4/42/Dust2_asite1.png/revision/latest/scale-to-width-down/1000?cb=20211006143721';
+            } else if (server.CurrentMap.Name == "de_grind") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/d/da/Csgo_grind_map.jpg/revision/latest/scale-to-width-down/1000?cb=20210515220952';
+            } else if (server.CurrentMap.Name == "de_inferno") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/f/f0/Inferno.jpg/revision/latest/scale-to-width-down/1000?cb=20161014013320';
+            } else if (server.CurrentMap.Name == "de_lake") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/0/08/Csgo-de-lake.png/revision/latest/scale-to-width-down/1000?cb=20140820130934';
+            } else if (server.CurrentMap.Name == "de_mirage") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/1/1e/CSGO_Mirage_latest_version.jpg/revision/latest/scale-to-width-down/1000?cb=20200301201524';
+            } else if (server.CurrentMap.Name == "de_mocha") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/0/0b/Csgo_map_Mocha.jpg/revision/latest/scale-to-width-down/1000?cb=20210519213544';
+            } else if (server.CurrentMap.Name == "de_nuke") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/9/93/CSGO_Nuke_22_Nov_2019_update_picture_1.jpg/revision/latest/scale-to-width-down/1000?cb=20210903110157';
+            } else if (server.CurrentMap.Name == "de_overpass") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/6/6e/Csgo-de-overpass.png/revision/latest/scale-to-width-down/1000?cb=20140820130544';
+            } else if (server.CurrentMap.Name == "de_pitstop") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/c/c6/Csgo_map_Pitstop.jpg/revision/latest/scale-to-width-down/1000?cb=20210526194248';
+            } else if (server.CurrentMap.Name == "de_safehouse") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/2/27/Csgo-de-safehouse.png/revision/latest/scale-to-width-down/1000?cb=20140820130431';
+            } else if (server.CurrentMap.Name == "de_shortdust") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/7/70/Csgo-shortdust-mid.png/revision/latest/scale-to-width-down/1000?cb=20141113033209';
+            } else if (server.CurrentMap.Name == "de_shortnuke") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/8/8b/De_shortnuke.jpg/revision/latest/scale-to-width-down/1000?cb=20180421181417';
+            } else if (server.CurrentMap.Name == "de_stmarc") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/8/83/Stmarc_tspawn.png/revision/latest/scale-to-width-down/1000?cb=20210912141050';
+            } else if (server.CurrentMap.Name == "de_sugarcane") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/c/c7/Csgo-de-sugarcane.png/revision/latest/scale-to-width-down/1000?cb=20140820125612';
+            } else if (server.CurrentMap.Name == "de_train") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/4/4a/De_train_thumbnail.png/revision/latest/scale-to-width-down/1000?cb=20181004200630';
+            } else if (server.CurrentMap.Name == "de_vertigo") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/a/a5/Vertigo-b-site-overview.png/revision/latest/scale-to-width-down/1000?cb=20210901105128';
+            } else if (server.CurrentMap.Name == "dz_blacksite") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/c/c1/Dz_blacksite.png/revision/latest/scale-to-width-down/1000?cb=20201203223002';
+            } else if (server.CurrentMap.Name == "dz_frostbite") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/c/c6/Dz_frostbite.png/revision/latest/scale-to-width-down/1000?cb=20211025085227';
+            } else if (server.CurrentMap.Name == "dz_sirocco") {
+                iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/7/7f/Sirocco-center.png/revision/latest/scale-to-width-down/1000?cb=20211020085720';
+            } else {
+                iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
+            }
         } else {
             iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
         }
@@ -871,6 +953,10 @@ var plugin = {
             game = "SHG1";
             authUrl = "https://i.gyazo.com/d524bf93e1fc38fa46f8fe1ed5162493.png";
             color = 13421568;
+        } else if (server.eventParser.Name === "CS:GO Parser") {
+            game = "CSGO";
+            authUrl = "https://www.freeiconspng.com/uploads/csgo-icon-4.png";
+            color = 1911881;
         }
         if (gameEvent.Type < 13) {
             if (gameEvent.Type != 3 && gameEvent.Type != 6 && gameEvent.Type === 12) {
