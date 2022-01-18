@@ -38,7 +38,7 @@ This plugin is based on the idea of the YADB plugin but with some extra features
   ```
   "IW4ToDiscord": {
     "Author": "Zwambro",
-    "Version": 1.1,
+    "Version": 1.31,
     "ReportWebhook": "your_report_webhook_url",
     "BansWebhook": "your_bans_webhook_url",
     "ServerStatusWebhook": "your_status_webhook_url",
