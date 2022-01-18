@@ -22,7 +22,7 @@ SOFTWARE.
 
 var plugin = {
     author: 'Zwambro',
-    version: 1.3,
+    version: 1.31,
     name: 'IW4ToDiscord',
 
     manager: null,
@@ -933,8 +933,12 @@ var plugin = {
             game = "IW6x";
             authUrl = "https://i.gyazo.com/82b84341e141f6420db6c6ef1d9037bb.png";
             color = 39321;
-        } else if (server.eventParser.Name === "Call of Duty 5: World at War Parser") {
+        } else if (server.eventParser.Name === "Plutonium T4 MP Parser") {
             game = "PlutoT4";
+            authUrl = "https://i.gyazo.com/1e1987d84038aae38610cab9c999868d.png";
+            color = 7829308;
+        } else if (server.eventParser.Name === "Plutonium T4 CO-OP/Zombies Parser") {
+            game = "PlutoT4 Singleplayer";
             authUrl = "https://i.gyazo.com/1e1987d84038aae38610cab9c999868d.png";
             color = 7829308;
         } else if (server.eventParser.Name === "RektT5m Parser") {
