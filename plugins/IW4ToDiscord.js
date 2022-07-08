@@ -22,7 +22,7 @@ SOFTWARE.
 
 var plugin = {
     author: 'Zwambro',
-    version: 1.31,
+    version: 1.4,
     name: 'IW4ToDiscord',
 
     manager: null,
@@ -31,68 +31,85 @@ var plugin = {
 
 
     sendBansWebHook: function (embed) {
+
         try {
             var params = {
                 "embeds": [embed]
             }
+
             var client1 = new System.Net.Http.HttpClient();
-            var result1 = client1.PostAsync(this.getBansDiscordWebhookConf(), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
+            var result1 = client1.PostAsync(this.configHandler.GetValue("BansWebhook"), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
             var resCl1 = result1.Content;
+
             resCl1.Dispose();
             result1.Dispose();
             client1.Dispose();
+
         } catch (e) {
             this.logger.WriteWarning('There was a problem sending this webhook: ' + e.message);
         }
     },
 
     sendReportsWebHook: function (embed) {
+
         try {
             var params = {
                 "embeds": [embed]
             }
+
             var client1 = new System.Net.Http.HttpClient();
-            var result1 = client1.PostAsync(this.getReportDiscordWebhookConf(), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
+            var result1 = client1.PostAsync(this.configHandler.GetValue("ReportWebhook"), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
             var resCl1 = result1.Content;
+
             resCl1.Dispose();
             result1.Dispose();
             client1.Dispose();
+
         } catch (e) {
             this.logger.WriteWarning('There was a problem sending this webhook: ' + e.message);
         }
     },
 
     sendServersStatusWebHook: function (embed) {
+
         try {
             var params = {
                 "embeds": [embed]
             }
+
             var client1 = new System.Net.Http.HttpClient();
-            var result1 = client1.PostAsync(this.getServerStatusDiscordWebhookConf(), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
+            var result1 = client1.PostAsync(this.configHandler.GetValue("ServerStatusWebhook"), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
             var resCl1 = result1.Content;
+
             resCl1.Dispose();
             result1.Dispose();
             client1.Dispose();
+
         } catch (e) {
             this.logger.WriteWarning('There was a problem sending this webhook: ' + e.message);
         }
     },
 
     sendChatlogWebHook: function (embed) {
+
         try {
             var params = {
                 "embeds": [embed]
             }
+
             var client1 = new System.Net.Http.HttpClient();
-            var result1 = client1.PostAsync(this.getChatlogDiscordWebhookConf(), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
+            var result1 = client1.PostAsync(this.configHandler.GetValue("ChatlogWebhook"), new System.Net.Http.StringContent(JSON.stringify(params), System.Text.Encoding.UTF8, "application/json")).Result;
             var resCl1 = result1.Content;
+
             resCl1.Dispose();
             result1.Dispose();
             client1.Dispose();
+
         } catch (e) {
             this.logger.WriteWarning('There was a problem sending this webhook: ' + e.message);
         }
     },
+
 
     getMapThumb: function (server) {
         var iconUrl = "";
@@ -143,6 +160,7 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+
         } else if (server.GameName === 2) {
             if (server.CurrentMap.Name == "mp_rust") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/33/Rust.jpg/revision/latest?cb=20100720174413';
@@ -237,6 +255,7 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+
         } else if (server.GameName === 3) {
             if (server.CurrentMap.Name == "mp_seatown") {
                 iconUrl = "https://static.wikia.nocookie.net/callofduty/images/a/a7/Bare_Load_Screen_Seatown_MW3.png/revision/latest?cb=20120320235504";
@@ -323,6 +342,7 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+
         } else if (server.GameName === 4) {
             if (server.CurrentMap.Name == "mp_prisonbreak") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/a6/Prison_Break_CoDG.jpg/revision/latest?cb=20160123214305';
@@ -399,6 +419,7 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+
         } else if (server.GameName === 5) {
             if (server.CurrentMap.Name == "mp_airfield") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/04/Airfield.jpg/revision/latest?cb=20100703083537';
@@ -445,6 +466,7 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+
         } else if (server.GameName === 6) {
             if (server.CurrentMap.Name == "mp_array") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/35/Bare_Load_Screen_Array_BO.jpg/revision/latest?cb=20110303121651';
@@ -501,6 +523,7 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+
         } else if (server.GameName === 7) {
             if (server.CurrentMap.Name == "mp_la") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/b/ba/Aftermath_loading_screen_BOII.png/revision/latest?cb=20130125112538';
@@ -581,6 +604,7 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+
         } else if (server.GameName === 8) {
             if (server.CurrentMap.Name == "mp_apartments") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/41/Evac_Map_Preview_BO3.png/revision/latest?cb=20200804015812';
@@ -643,6 +667,7 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+
         } else if (server.GameName === 9) {
             if (server.CurrentMap.Name == "mp_refraction") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/a5/Ascend_loading_screen_AW.png/revision/latest?cb=20150402170105';
@@ -715,6 +740,7 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+
         } else if (server.GameName === 10) {
             if (server.CurrentMap.Name == "ar_baggage") {
                 iconUrl = 'https://static.wikia.nocookie.net/cswikia/images/3/35/Csgo_ar_baggage.png/revision/latest/scale-to-width-down/1000?cb=20120422195558';
@@ -789,6 +815,7 @@ var plugin = {
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
+
         } else {
             iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
         }
@@ -869,32 +896,13 @@ var plugin = {
         var duRation = daYs.replace(/^0+/, '') + houRs.replace(/^0+/, '') + miNutes.replace(/^0+/, '') + seConds.replace(/^0+/, '');
         return duRation;
     },
+
     getTargetName: function (gameEvent, basURL) {
         var target = "";
         target = "[`" + gameEvent.Target.CleanedName + "` @" + gameEvent.Target.ClientId + "](" + basURL + "client/profileasync/" + gameEvent.Target.ClientId + ")";
         return target;
     },
-    getReportDiscordWebhookConf: function () {
-        var reportDiscordWebhookValue = this.configHandler.GetValue("ReportWebhook");
-        if (!reportDiscordWebhookValue) {
-            this.configHandler.SetValue("ReportWebhook", "your_report_webhook_url");
-        }
-        return reportDiscordWebhookValue;
-    },
-    getBansDiscordWebhookConf: function () {
-        var bansDiscordWebhookValue = this.configHandler.GetValue("BansWebhook");
-        if (!bansDiscordWebhookValue) {
-            this.configHandler.SetValue("BansWebhook", "your_bans_webhook_url");
-        }
-        return bansDiscordWebhookValue;
-    },
-    getServerStatusDiscordWebhookConf: function () {
-        var serverstatusDiscordWebhookValue = this.configHandler.GetValue("ServerStatusWebhook");
-        if (!serverstatusDiscordWebhookValue) {
-            this.configHandler.SetValue("ServerStatusWebhook", "your_status_webhook_url");
-        }
-        return serverstatusDiscordWebhookValue;
-    },
+
     getChatlogDiscordWebhookConf: function () {
         var chatlogDiscordWebhookValue = this.configHandler.GetValue("ChatlogWebhook");
         if (!chatlogDiscordWebhookValue) {
@@ -902,6 +910,8 @@ var plugin = {
         }
         return chatlogDiscordWebhookValue;
     },
+
+
     onEventAsync: function (gameEvent, server) {
 
         var basURL = this.manager.GetApplicationSettings().Configuration().WebfrontUrl;
@@ -965,10 +975,15 @@ var plugin = {
             game = "CSGO (SourceMod)";
             authUrl = "https://www.freeiconspng.com/uploads/csgo-icon-4.png";
             color = 1911881;
+        }else{
+            game = "Not Supported Game";
+            authUrl = "https://www.freeiconspng.com/uploads/csgo-icon-4.png";
+            color = 0000000;
         }
+
         if (gameEvent.Type < 13) {
-            if (gameEvent.Type != 3 && gameEvent.Type != 6 && gameEvent.Type === 12) {
-                embed = {
+            if (gameEvent.TypeName !== "Stop" && gameEvent.TypeName === "ConnectionLost") {
+                embed0 = {
                     "title": "Servers Status",
                     "description": "Lost connection to **" + server.Hostname.replace(/\^[0-9:;c]/g, "") + "**",
                     "timestamp": new Date(),
@@ -978,11 +993,24 @@ var plugin = {
                         "icon_url": authUrl
                     },
                 }
-                this.sendServersStatusWebHook(embed);
+                this.sendServersStatusWebHook(embed0);
+            }else if (gameEvent.TypeName === "Stop" && gameEvent.TypeName !== "ConnectionLost") {
+                embed1 = {
+                    "title": "Servers Status",
+                    "description": "**" + server.Hostname.replace(/\^[0-9:;c]/g, "") + " stopped being monitored **",
+                    "timestamp": new Date(),
+                    "color": 15073200,
+                    "author": {
+                        "name": game,
+                        "icon_url": authUrl
+                    },
+                }
+                this.sendServersStatusWebHook(embed1);
             }
         }
-        if (gameEvent.Type === 13) {
-            embed1 = {
+
+        if (gameEvent.TypeName === "ConnectionRestored" && gameEvent.TypeName !== "Start") {
+            embed2 = {
                 "title": "Servers Status",
                 "description": "Restored connection to **" + server.Hostname.replace(/\^[0-9:;c]/g, "") + "**",
                 "timestamp": new Date(),
@@ -992,9 +1020,23 @@ var plugin = {
                     "icon_url": authUrl
                 },
             }
-            this.sendServersStatusWebHook(embed1);
+            this.sendServersStatusWebHook(embed2);
+
+        }else if (gameEvent.TypeName === "Start" && gameEvent.TypeName !== "ConnectionRestored"){
+            embed3 = {
+                "title": "Servers Status",
+                "description": "**" + server.Hostname.replace(/\^[0-9:;c]/g, "") + " started being monitored **",
+                "timestamp": new Date(),
+                "color": 3394699,
+                "author": {
+                    "name": game,
+                    "icon_url": authUrl
+                },
+            }
+            this.sendServersStatusWebHook(embed3);
         }
-        if (gameEvent.Type === 103) {
+
+        if (gameEvent.TypeName === "Report") {
             var admins = "";
             server.GetClientsAsList().forEach(function (players) {
                 if (players.Level > 1 && !players.Masked) {
@@ -1004,7 +1046,7 @@ var plugin = {
             if (!admins) {
                 admins = "No admin online";
             }
-            embed2 = {
+            embed4 = {
                 "author": {
                     "name": game,
                     "icon_url": authUrl
@@ -1030,10 +1072,11 @@ var plugin = {
                     },
                 ]
             }
-            this.sendReportsWebHook(embed2);
+            this.sendReportsWebHook(embed4);
         }
-        if (gameEvent.Type === 106) {
-            embed3 = {
+
+        if (gameEvent.TypeName === "Kick") {
+            embed5 = {
                 "author": {
                     "name": game,
                     "icon_url": authUrl
@@ -1053,10 +1096,11 @@ var plugin = {
                     },
                 ]
             }
-            this.sendBansWebHook(embed3);
+            this.sendBansWebHook(embed5);
         }
-        if (gameEvent.Type === 107) {
-            embed4 = {
+
+        if (gameEvent.TypeName === "TempBan") {
+            embed6 = {
                 "author": {
                     "name": game,
                     "icon_url": authUrl
@@ -1081,10 +1125,11 @@ var plugin = {
                     },
                 ]
             }
-            this.sendBansWebHook(embed4);
+            this.sendBansWebHook(embed6);
         }
-        if (gameEvent.Type === 108) {
-            embed5 = {
+
+        if (gameEvent.TypeName === "Ban") {
+            embed7 = {
                 "author": {
                     "name": game,
                     "icon_url": authUrl
@@ -1109,10 +1154,11 @@ var plugin = {
                     },
                 ]
             }
-            this.sendBansWebHook(embed5);
+            this.sendBansWebHook(embed7);
         }
-        if (gameEvent.Type === 109) {
-            embed6 = {
+
+        if (gameEvent.TypeName === "Unban") {
+            embed8 = {
                 "author": {
                     "name": game,
                     "icon_url": authUrl
@@ -1124,10 +1170,11 @@ var plugin = {
                     "text": "Reason: " + gameEvent.Data.replace(/\^[0-9:;c]/g, "")
                 }
             }
-            this.sendBansWebHook(embed6);
+            this.sendBansWebHook(embed8);
         }
-        if (gameEvent.Type === 100) {
-            embed7 = {
+
+        if (gameEvent.TypeName === "Say") {
+            embed9 = {
                 "author": {
                     "name": game,
                     "icon_url": authUrl
@@ -1140,7 +1187,7 @@ var plugin = {
                     "text": server.Hostname.replace(/\^[0-9:;c]/g, "")
                 }
             }
-            this.sendChatlogWebHook(embed7);
+            this.sendChatlogWebHook(embed9);
         }
     },
 
@@ -1152,26 +1199,29 @@ var plugin = {
         this.configHandler.SetValue("Author", this.author);
         this.configHandler.SetValue("Version", this.version);
 
-        var reportWebhook = this.configHandler.GetValue("ReportWebhook");
-        var bansWebhook = this.configHandler.GetValue("BansWebhook");
-        var serverStatusWebhook = this.configHandler.GetValue("ServerStatusWebhook");
-        var chatlogWebhook = this.configHandler.GetValue("ChatlogWebhook");
+        var reportDiscordWebhookConf = this.configHandler.GetValue("ReportWebhook");
+        var bansDiscordWebhookConf = this.configHandler.GetValue("BansWebhook");
+        var serverStatusDiscordWebhookConf = this.configHandler.GetValue("ServerStatusWebhook");
+        var chatlogDiscordWebhookConf = this.configHandler.GetValue("ChatlogWebhook");
 
-        if (!reportWebhook) {
-            this.configHandler.SetValue("ReportWebhook", "your_report_webhook_url");
+        if (reportDiscordWebhookConf === undefined) {
+            this.configHandler.SetValue("ReportWebhook", 'your_report_webhook_url');
         }
-        if (!bansWebhook) {
-            this.configHandler.SetValue("BansWebhook", "your_bans_webhook_url");
+        if (bansDiscordWebhookConf === undefined) {
+            this.configHandler.SetValue("BansWebhook", 'your_bans_webhook_url');
         }
-        if (!serverStatusWebhook) {
+        if (serverStatusDiscordWebhookConf === undefined) {
             this.configHandler.SetValue("ServerStatusWebhook", "your_status_webhook_url");
         }
-        if (!chatlogWebhook) {
+        if (chatlogDiscordWebhookConf === undefined) {
             this.configHandler.SetValue("ChatlogWebhook", "your_chatlog_webhook_url");
         }
+        this.logger.WriteInfo(`Loaded IW4ToDiscord (${this.version}) by Zwambro`);
     },
 
-    onUnloadAsync: function () {},
+    onUnloadAsync: () => {
+    },
 
-    onTickAsync: function (server) {}
+    onTickAsync: server => {
+    }
 };
