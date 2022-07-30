@@ -20,9 +20,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-var plugin = {
+const plugin = {
     author: 'Zwambro',
-    version: 1.4,
+    version: 1.41,
     name: 'IW4ToDiscord',
 
     manager: null,
@@ -902,15 +902,6 @@ var plugin = {
         target = "[`" + gameEvent.Target.CleanedName + "` @" + gameEvent.Target.ClientId + "](" + basURL + "client/profileasync/" + gameEvent.Target.ClientId + ")";
         return target;
     },
-
-    getChatlogDiscordWebhookConf: function () {
-        var chatlogDiscordWebhookValue = this.configHandler.GetValue("ChatlogWebhook");
-        if (!chatlogDiscordWebhookValue) {
-            this.configHandler.SetValue("ChatlogWebhook", "your_chatlog_webhook_url");
-        }
-        return chatlogDiscordWebhookValue;
-    },
-
 
     onEventAsync: function (gameEvent, server) {
 
