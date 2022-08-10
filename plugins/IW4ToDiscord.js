@@ -22,7 +22,7 @@ SOFTWARE.
 
 const plugin = {
     author: 'Zwambro',
-    version: 1.41,
+    version: 1.5,
     name: 'IW4ToDiscord',
 
     manager: null,
@@ -114,7 +114,7 @@ const plugin = {
     getMapThumb: function (server) {
         var iconUrl = "";
 
-        if (server.GameName === 1) {
+        if (server.GameName === 1 || server.GameName === 11 ) {
             if (server.CurrentMap.Name == "mp_convoy") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/3/3c/Bare_Load_Screen_Ambush_CoD4.jpg/revision/latest?cb=20100723075603';
             } else if (server.CurrentMap.Name == "mp_backlot") {
@@ -918,6 +918,10 @@ const plugin = {
             game = "CoD4x";
             authUrl = "http://orig05.deviantart.net/8749/f/2008/055/0/c/call_of_duty_4__dock_icon_by_watts240.png";
             color = 6723840;
+        } else if (server.eventParser.Name === "H1-Mod Parser") {
+            game = "H1-Mod";
+            authUrl = "https://i.ibb.co/zS4pc0B/166013016241761317.png";
+            color = 6723844;
         } else if (server.eventParser.Name === "IW4x Parser") {
             game = "IW4x";
             authUrl = "https://i.gyazo.com/758b6933287392106bfdddc24b09d502.png";
@@ -944,6 +948,10 @@ const plugin = {
             color = 7829308;
         } else if (server.eventParser.Name === "RektT5m Parser") {
             game = "RektT5M";
+            authUrl = "https://i.gyazo.com/a8a22764fafd4cc178329717b9bb35dd.png";
+            color = 6064778;
+        } else if (server.eventParser.Name === "Plutonium T5 Parser") {
+            game = "PlutoT5";
             authUrl = "https://i.gyazo.com/a8a22764fafd4cc178329717b9bb35dd.png";
             color = 6064778;
         } else if (server.eventParser.Name === "Plutonium T6 Parser") {
