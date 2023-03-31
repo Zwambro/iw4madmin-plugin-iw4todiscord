@@ -22,7 +22,7 @@ SOFTWARE.
 
 const plugin = {
     author: 'Zwambro',
-    version: 1.5,
+    version: 1.51,
     name: 'IW4ToDiscord',
 
     manager: null,
@@ -961,6 +961,10 @@ const plugin = {
         } else if (server.eventParser.Name === "Black Ops 3 Parser") {
             game = "Call of Duty: Black Ops III";
             authUrl = "https://i.gyazo.com/5691ca84d47e219cdec76901ff142159.png";
+            color = 16737792;
+        } else if (server.eventParser.Name === "BOIII Parser") {
+            game = "BOIII";
+            authUrl = "https://i.imgur.com/nIi5QFP.jpg";
             color = 16737792;
         } else if (server.eventParser.Name === "S1x Parser") {
             game = "SHG1";
