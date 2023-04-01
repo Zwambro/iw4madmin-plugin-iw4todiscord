@@ -22,7 +22,7 @@ SOFTWARE.
 
 const plugin = {
     author: 'Zwambro',
-    version: 1.5,
+    version: 1.51,
     name: 'IW4ToDiscord',
 
     manager: null,
@@ -664,6 +664,34 @@ const plugin = {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/c/cc/Screen_Shot_2018-04-01_at_13.44.50.png/revision/latest?cb=20180401143041';
             } else if (server.CurrentMap.Name == "mp_western") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/25/Outlaw_BOIII.jpeg/revision/latest?cb=20160825185938';
+            } else if (server.CurrentMap.Name == "zm_zod") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/14/Shadows_of_Evil_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20160923082206';
+            } else if (server.CurrentMap.Name == "zm_castle") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/e4/Der_Eisendrache_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20160923082230';
+            } else if (server.CurrentMap.Name == "zm_island") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/06/Zetsubou_No_Shima_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20160923082244';
+            } else if (server.CurrentMap.Name == "zm_stalingrad") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/7/72/Gorod_Krovi_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20160923082253';
+            } else if (server.CurrentMap.Name == "zm_gensis") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/de/Revelations_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20161007033102';
+            } else if (server.CurrentMap.Name == "zm_cosmodrome") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/d/d8/Ascension_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20170617042103';
+            } else if (server.CurrentMap.Name == "zm_theater") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/ec/Kino_Der_Toten_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20170617042116';
+            } else if (server.CurrentMap.Name == "zm_moon") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/4a/Moon_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20170617042150';
+            } else if (server.CurrentMap.Name == "zm_prototype") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/6/64/Nacht_Der_Untoten_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20170617042202';
+            } else if (server.CurrentMap.Name == "zm_tomb") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/0/09/Origins_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20170617042215';
+            } else if (server.CurrentMap.Name == "zm_temple") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/7/76/Shangri_La_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20170617042246';
+            } else if (server.CurrentMap.Name == "zm_sumpf") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/1/16/Shi_No_Numa_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20170617042257';
+            } else if (server.CurrentMap.Name == "zm_factory") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/4/4d/The_Giant_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20160923082219';
+            } else if (server.CurrentMap.Name == "zm_asylum") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/e/e4/Verruckt_Menu_Selection_BO3.png/revision/latest/scale-to-width-down/1000?cb=20170617042321';
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
@@ -961,6 +989,10 @@ const plugin = {
         } else if (server.eventParser.Name === "Black Ops 3 Parser") {
             game = "Call of Duty: Black Ops III";
             authUrl = "https://i.gyazo.com/5691ca84d47e219cdec76901ff142159.png";
+            color = 16737792;
+        } else if (server.eventParser.Name === "BOIII Parser") {
+            game = "BOIII";
+            authUrl = "https://i.imgur.com/nIi5QFP.jpg";
             color = 16737792;
         } else if (server.eventParser.Name === "S1x Parser") {
             game = "SHG1";
