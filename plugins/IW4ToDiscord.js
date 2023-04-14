@@ -463,6 +463,14 @@ const plugin = {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/9/9e/Breach.jpg/revision/latest?cb=20100703082957';
             } else if (server.CurrentMap.Name == "mp_vodka") {
                 iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/f/f3/Revolution.jpg/revision/latest?cb=20100703083210';
+            } else if (server.CurrentMap.Name == "nazi_zombie_prototype") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/2b/Nacht_Der_Untoten_Menu_Selection_WaW.png/revision/latest?cb=20161009103531';
+            } else if (server.CurrentMap.Name == "nazi_zombie_asylum") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/a/a1/Verruckt_Menu_Selection_WaW.png/revision/latest?cb=20161009103542';   
+            } else if (server.CurrentMap.Name == "nazi_zombie_sumpf") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/2/2f/Shi_No_Numa_Menu_Selection_WaW.png/revision/latest?cb=20161009103553'; 
+            } else if (server.CurrentMap.Name == "nazi_zombie_factory") {
+                iconUrl = 'https://static.wikia.nocookie.net/callofduty/images/8/86/Der_Riese_Menu_Selection_WaW.png/revision/latest?cb=20161009103603';              
             } else {
                 iconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
             }
