@@ -22,6 +22,8 @@ SOFTWARE.
 const init = (registerNotify, serviceResolver, config, scriptHelper) => {
     registerNotify('IManagementEventSubscriptions.ClientPenaltyAdministered', (clientPenaltyEvent, _) => plugin.onClientPenalty(clientPenaltyEvent));
     registerNotify('IManagementEventSubscriptions.ClientPenaltyRevoked', (clientPenaltyEvent, _) => plugin.onClientPenalty(clientPenaltyEvent));
+    registerNotify('IManagementEventSubscriptions.ClientStateAuthorized', (clientAuthorizedEvent, _) => plugin.onClientAuthorized(clientAuthorizedEvent));
+    registerNotify('IManagementEventSubscriptions.ClientStateDisposed', (clientDisposedEvent, _) => plugin.onClientDisposed(clientDisposedEvent));
     registerNotify('IGameServerEventSubscriptions.ConnectionInterrupted', (connectionInterruptedEvent, _) => plugin.onServerConnectionInterrupted(connectionInterruptedEvent));
     registerNotify('IGameServerEventSubscriptions.ConnectionRestored', (connectionRestoredEvent, _) => plugin.onServerConnectionRestored(connectionRestoredEvent));
     registerNotify('IGameServerEventSubscriptions.MonitoringStarted', (serverMonitoredEvent, _) => plugin.onServerMonitored(serverMonitoredEvent));
@@ -45,7 +47,8 @@ const plugin = {
         reports: null,
         bans: null,
         status: null,
-        say: null
+        say: null,
+        connections: null
     },
 
     onLoad: function (serviceResolver, config, scriptHelper) {
@@ -61,7 +64,8 @@ const plugin = {
             reports: this.configHandler.getValue("ReportWebhook", webhook => plugin.webhookConfig.reports = webhook),
             bans: this.configHandler.getValue("BansWebhook", webhook => plugin.webhookConfig.bans = webhook),
             status: this.configHandler.getValue("ServerStatusWebhook", webhook => plugin.webhookConfig.status = webhook),
-            say: this.configHandler.getValue("ChatlogWebhook", webhook => plugin.webhookConfig.say = webhook)
+            say: this.configHandler.getValue("ChatlogWebhook", webhook => plugin.webhookConfig.say = webhook),
+            connections: this.configHandler.getValue("ConnectionsWebhook", webhook => plugin.webhookConfig.connections = webhook)
         };
 
         if (this.webhookConfig.reports === undefined) {
@@ -75,6 +79,9 @@ const plugin = {
         }
         if (this.webhookConfig.say === undefined) {
             this.configHandler.setValue("ChatlogWebhook", "your_chatlog_webhook_url");
+        }
+        if (this.webhookConfig.connections === undefined) {
+            this.configHandler.setValue("ConnectionsWebhook", "your_connection_webhook_url");
         }
 
         this.logger.logInformation('{Name} {Version} by {Author} loaded.', this.name, this.version, this.author);
@@ -99,6 +106,47 @@ const plugin = {
 
         this.sendWebHook(embed, "Chatlog");
     },
+
+    onClientAuthorized: function (clientAuthorizedEvent) {
+        const server = clientAuthorizedEvent.client.currentServer;
+        const gameInfo = this.gameInfo(server);
+        const embed = {
+            "author": {
+                "name": gameInfo.game,
+                "icon_url": gameInfo.iconUrl
+            },
+            "title": clientAuthorizedEvent.client.cleanedName,
+            "description": 'Connected',
+            "timestamp": new Date(),
+            "color": 96820,
+            "footer": {
+                "text": server.serverName.stripColors()
+            }
+        };
+
+        this.sendWebHook(embed, "Connection");
+    },
+
+    onClientDisposed: function (clientDisposedEvent) {
+        const server = clientDisposedEvent.client.currentServer;
+        const gameInfo = this.gameInfo(server);
+        const embed = {
+            "author": {
+                "name": gameInfo.game,
+                "icon_url": gameInfo.iconUrl
+            },
+            "title": clientDisposedEvent.client.cleanedName,
+            "description": 'Disconnected',
+            "timestamp": new Date(),
+            "color": 10029348,
+            "footer": {
+                "text": server.serverName.stripColors()
+            }
+        };
+
+        this.sendWebHook(embed, "Connection");
+    },
+
 
     onClientPenalty: function (clientPenaltyEvent) {
         const server = clientPenaltyEvent.client.currentServer;
@@ -317,6 +365,9 @@ const plugin = {
                 break;
             case "Chatlog":
                 webhookUrl = this.webhookConfig.say;
+                break;
+            case "Connection":
+                webhookUrl = this.webhookConfig.connections;
                 break;
         }
 
