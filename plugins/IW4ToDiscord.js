@@ -508,7 +508,7 @@ const plugin = {
             color: "0000000"
         };
 
-        const game = games[server.eventParser.name] || defaultGame;
+        const game = games[owner.eventParser.name] || defaultGame;
 
         return {game: game.name, iconUrl: game.iconUrl, color: game.color};
     },
