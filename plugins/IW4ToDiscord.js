@@ -19,15 +19,32 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 const init = (registerNotify, serviceResolver, config, scriptHelper) => {
-    registerNotify('IManagementEventSubscriptions.ClientPenaltyAdministered', (clientPenaltyEvent, _) => plugin.onClientPenalty(clientPenaltyEvent));
-    registerNotify('IManagementEventSubscriptions.ClientPenaltyRevoked', (clientPenaltyEvent, _) => plugin.onClientPenalty(clientPenaltyEvent));
-    registerNotify('IManagementEventSubscriptions.ClientStateAuthorized', (clientAuthorizedEvent, _) => plugin.onClientAuthorized(clientAuthorizedEvent));
-    registerNotify('IManagementEventSubscriptions.ClientStateDisposed', (clientDisposedEvent, _) => plugin.onClientDisposed(clientDisposedEvent));
-    registerNotify('IGameServerEventSubscriptions.ConnectionInterrupted', (connectionInterruptedEvent, _) => plugin.onServerConnectionInterrupted(connectionInterruptedEvent));
-    registerNotify('IGameServerEventSubscriptions.ConnectionRestored', (connectionRestoredEvent, _) => plugin.onServerConnectionRestored(connectionRestoredEvent));
-    registerNotify('IGameServerEventSubscriptions.MonitoringStarted', (serverMonitoredEvent, _) => plugin.onServerMonitored(serverMonitoredEvent));
-    registerNotify('IGameEventSubscriptions.ClientMessaged', (clientMessagedEvent, _) => plugin.onClientSayEvent(clientMessagedEvent));
+    registerNotify('IManagementEventSubscriptions.ClientPenaltyAdministered', (clientPenaltyEvent) =>
+        plugin.onClientPenalty(clientPenaltyEvent)
+    );
+    registerNotify('IManagementEventSubscriptions.ClientPenaltyRevoked', (clientPenaltyEvent) =>
+        plugin.onClientPenalty(clientPenaltyEvent)
+    );
+    registerNotify('IManagementEventSubscriptions.ClientStateAuthorized', (clientAuthorizedEvent) =>
+        plugin.onClientAuthorized(clientAuthorizedEvent)
+    );
+    registerNotify('IManagementEventSubscriptions.ClientStateDisposed', (clientDisposedEvent) =>
+        plugin.onClientDisposed(clientDisposedEvent)
+    );
+    registerNotify('IGameServerEventSubscriptions.ConnectionInterrupted', (connectionInterruptedEvent) =>
+        plugin.onServerConnectionInterrupted(connectionInterruptedEvent)
+    );
+    registerNotify('IGameServerEventSubscriptions.ConnectionRestored', (connectionRestoredEvent) =>
+        plugin.onServerConnectionRestored(connectionRestoredEvent)
+    );
+    registerNotify('IGameServerEventSubscriptions.MonitoringStarted', (serverMonitoredEvent) =>
+        plugin.onServerMonitored(serverMonitoredEvent)
+    );
+    registerNotify('IGameEventSubscriptions.ClientMessaged', (clientMessagedEvent) =>
+        plugin.onClientSayEvent(clientMessagedEvent)
+    );
 
     plugin.onLoad(serviceResolver, config, scriptHelper);
     return plugin;
@@ -35,7 +52,7 @@ const init = (registerNotify, serviceResolver, config, scriptHelper) => {
 
 const plugin = {
     author: 'Zwambro, Amos, RaidMax',
-    version: 2.1,
+    version: 2.2,
     name: 'IW4ToDiscord',
 
     manager: null,
@@ -48,7 +65,7 @@ const plugin = {
         bans: null,
         status: null,
         say: null,
-        connections: null
+        connections: null,
     },
 
     onLoad: function (serviceResolver, config, scriptHelper) {
@@ -60,474 +77,364 @@ const plugin = {
         this.configHandler = config;
         this.configHandler.setName(this.name);
 
-        this.webhookConfig = {
-            reports: this.configHandler.getValue("ReportWebhook", webhook => plugin.webhookConfig.reports = webhook),
-            bans: this.configHandler.getValue("BansWebhook", webhook => plugin.webhookConfig.bans = webhook),
-            status: this.configHandler.getValue("ServerStatusWebhook", webhook => plugin.webhookConfig.status = webhook),
-            say: this.configHandler.getValue("ChatlogWebhook", webhook => plugin.webhookConfig.say = webhook),
-            connections: this.configHandler.getValue("ConnectionsWebhook", webhook => plugin.webhookConfig.connections = webhook)
-        };
+        // Simplify webhook config initialization
+        const webhookKeys = ["reports", "bans", "status", "say", "connections"];
+        for (const key of webhookKeys) {
+            this.logger.logWarning(key);
+            this.logger.logWarning(`${key.charAt(0).toUpperCase() + key.slice(1)}Webhook`);
+            this.webhookConfig[key] = this.configHandler.getValue(`${key.charAt(0).toUpperCase() + key.slice(1)}Webhook`, webhook => plugin.webhookConfig[key] = webhook);
+            this.logger.logInformation(this.webhookConfig[key]);
 
-        if (this.webhookConfig.reports === undefined) {
-            this.configHandler.setValue("ReportWebhook", 'your_report_webhook_url');
-        }
-        if (this.webhookConfig.bans === undefined) {
-            this.configHandler.setValue("BansWebhook", 'your_bans_webhook_url');
-        }
-        if (this.webhookConfig.status === undefined) {
-            this.configHandler.setValue("ServerStatusWebhook", "your_status_webhook_url");
-        }
-        if (this.webhookConfig.say === undefined) {
-            this.configHandler.setValue("ChatlogWebhook", "your_chatlog_webhook_url");
-        }
-        if (this.webhookConfig.connections === undefined) {
-            this.configHandler.setValue("ConnectionsWebhook", "your_connection_webhook_url");
+            if (this.webhookConfig[key] === undefined) {
+                this.configHandler.setValue(
+                    `${key.charAt(0).toUpperCase() + key.slice(1)}Webhook`,
+                    `your_${key}_webhook_url`
+                );
+            }
         }
 
         this.logger.logInformation('{Name} {Version} by {Author} loaded.', this.name, this.version, this.author);
     },
 
     onClientSayEvent: function (clientMessagedEvent) {
-        const server = clientMessagedEvent.client.currentServer;
-        const gameInfo = this.gameInfo(server);
+        const server = clientMessagedEvent.server;
         const embed = {
             "author": {
-                "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
+                "name": this.getGameInfo(server).game,
+                "icon_url": this.getGameInfo(server).iconUrl,
             },
             "title": clientMessagedEvent.client.cleanedName,
             "description": clientMessagedEvent.message?.stripColors(),
             "timestamp": new Date(),
             "color": 3564200,
             "footer": {
-                "text": server.serverName.stripColors()
-            }
+                "text": server.serverName.stripColors(),
+            },
         };
 
-        this.sendWebHook(embed, "Chatlog");
+        this.sendWebHook(embed, "say");
     },
 
     onClientAuthorized: function (clientAuthorizedEvent) {
-        const server = clientAuthorizedEvent.client.currentServer;
-        const gameInfo = this.gameInfo(server);
-        const embed = {
-            "author": {
-                "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
-            },
-            "title": clientAuthorizedEvent.client.cleanedName,
-            "description": 'Connected',
-            "timestamp": new Date(),
-            "color": 96820,
-            "footer": {
-                "text": server.serverName.stripColors()
-            }
-        };
-
-        this.sendWebHook(embed, "Connection");
+        this.sendConnectionEmbed(clientAuthorizedEvent.client, "Connected", 96820);
     },
 
     onClientDisposed: function (clientDisposedEvent) {
-        const server = clientDisposedEvent.client.currentServer;
-        const gameInfo = this.gameInfo(server);
-        const embed = {
-            "author": {
-                "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
-            },
-            "title": clientDisposedEvent.client.cleanedName,
-            "description": 'Disconnected',
-            "timestamp": new Date(),
-            "color": 10029348,
-            "footer": {
-                "text": server.serverName.stripColors()
-            }
-        };
-
-        this.sendWebHook(embed, "Connection");
+        this.sendConnectionEmbed(clientDisposedEvent.client, "Disconnected", 10029348);
     },
 
+    // Helper function to send connection/disconnection embeds
+    sendConnectionEmbed: function (client, description, color) {
+        const server = client.currentServer;
+        this.logger.logInformation(server);
+        const embed = {
+            "author": {
+                "name": this.getGameInfo(server).game,
+                "icon_url": this.getGameInfo(server).iconUrl,
+            },
+            "title": client.cleanedName,
+            "description": description,
+            "timestamp": new Date(),
+            "color": color,
+            "footer": {
+                "text": server.serverName.stripColors(),
+            },
+        };
+
+        this.logger.logInformation(embed);
+
+        this.sendWebHook(embed, "connections");
+    },
 
     onClientPenalty: function (clientPenaltyEvent) {
-        const server = clientPenaltyEvent.client.currentServer;
-        const gameInfo = this.gameInfo(server);
-        const offense = clientPenaltyEvent.penalty.offense?.stripColors();
-        const adminNameAndUrl = this.getNameAndUrl(clientPenaltyEvent.penalty.punisher);
-        const clientNameAndUrl = this.getNameAndUrl(clientPenaltyEvent.client);
-        let duration = 0;
-        if (clientPenaltyEvent.penalty.expires !== undefined) duration = (clientPenaltyEvent.penalty.expires - clientPenaltyEvent.penalty.when).toString();
+        const { client, penalty } = clientPenaltyEvent;
+        const server = client.currentServer;
+        const gameInfo = this.getGameInfo(server);
+        const offense = penalty.offense?.stripColors();
+        const adminNameAndUrl = this.getNameAndUrl(penalty.punisher);
+        const clientNameAndUrl = this.getNameAndUrl(client);
+        const duration = penalty.expires !== undefined
+            ? this.timeFormat(penalty.expires - penalty.when)
+            : null;
 
-        if (clientPenaltyEvent.penalty.type === 'Report') this.onReportEvent(server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense);
-        if (clientPenaltyEvent.penalty.type === 'Kick') this.onClientKickEvent(server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense);
-        if (clientPenaltyEvent.penalty.type === 'TempBan') this.onClientTempBanEvent(server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense, duration);
-        if (clientPenaltyEvent.penalty.type === 'Ban') this.onClientBanEvent(server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense);
-        if (clientPenaltyEvent.penalty.type === 'Unban') this.onClientUnbanEvent(server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense);
+        switch (penalty.type) {
+            case 'Report':
+                this.onReportEvent(server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense);
+                break;
+            case 'Kick':
+                this.onClientKickEvent(server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense);
+                break;
+            case 'TempBan':
+                this.onClientTempBanEvent(server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense, duration);
+                break;
+            case 'Ban':
+                this.onClientBanEvent(server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense);
+                break;
+            case 'Unban':
+                this.onClientUnbanEvent(gameInfo, adminNameAndUrl, clientNameAndUrl, offense);
+                break;
+        }
     },
 
-    onClientUnbanEvent: function (server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense) {
-        const embed = {
-            "author": {
-                "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
-            },
-            "description": `${adminNameAndUrl} Unbanned ${clientNameAndUrl}`,
-            "timestamp": new Date(),
-            "color": 15132390,
-            "footer": {
-                "text": `Reason: ${offense}`
-            }
-        };
-
-        this.sendWebHook(embed, "Bans");
+    onClientUnbanEvent: function (gameInfo, adminNameAndUrl, clientNameAndUrl, offense) {
+        this.sendPenaltyEmbed(gameInfo, `${adminNameAndUrl} Unbanned ${clientNameAndUrl}`, 15132390,
+            [{ name: "Reason", value: offense, inline: false }],
+        );
     },
 
     onClientBanEvent: function (server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense) {
-        const embed = {
-            "author": {
-                "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
-            },
-            "description": `${adminNameAndUrl} Banned ${clientNameAndUrl}`,
-            "timestamp": new Date(),
-            "color": 15466496,
-            "fields": [{
-                "name": "Reason",
-                "value": offense,
-                "inline": false
-            }, {
-                "name": "Server",
-                "value": server.serverName.stripColors(),
-                "inline": true
-            }, {
-                "name": "Duration",
-                "value": "Permanent",
-                "inline": true
-            }]
-        };
-
-        this.sendWebHook(embed, "Bans");
+        this.sendPenaltyEmbed(gameInfo, `${adminNameAndUrl} Banned ${clientNameAndUrl}`, 15466496,
+            [
+                { name: "Reason", value: offense, inline: false },
+                { name: "Server", value: server.serverName.stripColors(), inline: true },
+                { name: "Duration", value: "Permanent", inline: true },
+            ],
+        );
     },
 
     onClientTempBanEvent: function (server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense, duration) {
-        const embed = {
-            "author": {
-                "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
-            },
-            "description": `${adminNameAndUrl} Temp Banned ${clientNameAndUrl}`,
-            "timestamp": new Date(),
-            "color": 15466496,
-            "fields": [{
-                "name": "Reason",
-                "value": offense,
-                "inline": false
-            }, {
-                "name": "Server",
-                "value": server.serverName.stripColors(),
-                "inline": true
-            }, {
-                "name": "Duration",
-                "value": this.timeFormat(duration),
-                "inline": true
-            }]
-        };
-
-        this.sendWebHook(embed, "Bans");
+        this.sendPenaltyEmbed(gameInfo, `${adminNameAndUrl} Temp Banned ${clientNameAndUrl}`, 15466496,
+            [
+                { name: "Reason", value: offense, inline: false },
+                { name: "Server", value: server.serverName.stripColors(), inline: true },
+                { name: "Duration", value: duration, inline: true },
+            ],
+        );
     },
 
     onClientKickEvent: function (server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense) {
+        this.sendPenaltyEmbed(gameInfo, `${adminNameAndUrl} Kicked ${clientNameAndUrl}`, 15466496,
+            [
+                { name: "Reason", value: offense, inline: false },
+                { name: "Server", value: server.serverName.stripColors(), inline: true },
+            ],
+        );
+    },
+
+    // Helper function to send penalty embeds
+    sendPenaltyEmbed: function (gameInfo, description, color, fields) {
         const embed = {
             "author": {
                 "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
+                "icon_url": gameInfo.iconUrl,
             },
-            "description": `${adminNameAndUrl} Kicked ${clientNameAndUrl}`,
+            "description": description,
             "timestamp": new Date(),
-            "color": 15466496,
-            "fields": [{
-                "name": "Reason",
-                "value": offense,
-                "inline": false
-            }, {
-                "name": "Server",
-                "value": server.serverName.stripColors(),
-                "inline": true
-            }]
+            "color": color,
+            "fields": fields,
         };
 
-        this.sendWebHook(embed, "Bans");
+        this.sendWebHook(embed, "bans");
     },
 
     onReportEvent: function (server, gameInfo, adminNameAndUrl, clientNameAndUrl, offense) {
-        let admins = Array.from(server.getClientsAsList()).map(function (player) {
-            if (player.level !== "User" && player.level !== "Trusted" && player.level !== "Flagged" && !player.masked) {
-                return player.cleanedName;
-            }
-            return "";
-        }).filter((item) => item !== "").join(", ");
-
-        if (!admins) {
-            admins = "No admins online";
-        }
+        const admins = Array.from(server.getClientsAsList())
+            .filter(player => player.level !== "User" && player.level !== "Trusted" && player.level !== "Flagged" && !player.masked)
+            .map(player => player.cleanedName)
+            .join(", ");
 
         const embed = {
             "author": {
                 "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
+                "icon_url": gameInfo.iconUrl,
             },
             "description": `${adminNameAndUrl} Reported ${clientNameAndUrl}`,
             "timestamp": new Date(),
             "color": gameInfo.color,
             "footer": {
-                "text": `Online Admins: ${admins}`
+                "text": `Online Admins: ${admins || "No admins online"}`,
             },
             "thumbnail": {
-                "url": this.getMapThumb(server)
+                "url": this.getMapThumb(server),
             },
-            "fields": [{
-                "name": "Server",
-                "value": server.serverName.stripColors(),
-                "inline": false
-            }, {
-                "name": "Reason",
-                "value": offense,
-                "inline": false
-            }]
+            "fields": [
+                { name: "Server", value: server.serverName.stripColors(), inline: false },
+                { name: "Reason", value: offense, inline: false },
+            ],
         };
 
-        this.sendWebHook(embed, "Reports");
+        this.sendWebHook(embed, "reports");
     },
 
     onServerMonitored: function (serverMonitoredEvent) {
-        let server = serverMonitoredEvent.server;
-        let gameInfo = this.gameInfo(server);
-        const embed = {
-            "title": "Servers Status",
-            "description": `** ${server.serverName.stripColors()} started being monitored **`,
-            "timestamp": new Date(),
-            "color": 3394699,
-            "author": {
-                "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
-            },
-        };
-
-        this.sendWebHook(embed, "ServerStatus");
+        this.sendServerStatusEmbed(serverMonitoredEvent.server, "started being monitored", 3394699);
     },
 
     onServerConnectionInterrupted: function (connectionInterruptedEvent) {
-        let gameInfo = this.gameInfo(connectionInterruptedEvent.server);
-        const embed = {
-            "title": "Servers Status",
-            "description": `Lost connection to ** ${connectionInterruptedEvent.server.serverName.stripColors()} **`,
-            "timestamp": new Date(),
-            "color": 15073280,
-            "author": {
-                "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
-            },
-        };
-
-        this.sendWebHook(embed, "ServerStatus");
+        this.sendServerStatusEmbed(connectionInterruptedEvent.server, "Lost connection to", 15073280);
     },
 
     onServerConnectionRestored: function (connectionRestoredEvent) {
-        let gameInfo = this.gameInfo(connectionRestoredEvent.server);
+        this.sendServerStatusEmbed(connectionRestoredEvent.server, "Restored connection to", 3394611);
+    },
+
+    // Helper function to send server status embeds
+    sendServerStatusEmbed: function (server, description, color) {
         const embed = {
             "title": "Servers Status",
-            "description": `Restored connection to ** ${connectionRestoredEvent.server.serverName.stripColors()} **`,
+            "description": `** ${server.serverName.stripColors()} ${description} **`,
             "timestamp": new Date(),
-            "color": 3394611,
+            "color": color,
             "author": {
-                "name": gameInfo.game,
-                "icon_url": gameInfo.iconUrl
+                "name": this.getGameInfo(server).game,
+                "icon_url": this.getGameInfo(server).iconUrl,
             },
         };
 
-        this.sendWebHook(embed, "ServerStatus");
+        this.sendWebHook(embed, "status");
     },
 
     sendWebHook: function (embed, webhookType) {
-        let params = {
-            "embeds": [embed]
-        };
+        const webhookUrl = this.webhookConfig[webhookType];
+        this.logger.logWarning(webhookUrl);
+        if (!webhookUrl) return;
 
-        let webhookUrl = "";
-        switch (webhookType) {
-            case "Bans":
-                webhookUrl = this.webhookConfig.bans;
-                break;
-            case "Reports":
-                webhookUrl = this.webhookConfig.reports;
-                break;
-            case "ServerStatus":
-                webhookUrl = this.webhookConfig.status;
-                break;
-            case "Chatlog":
-                webhookUrl = this.webhookConfig.say;
-                break;
-            case "Connection":
-                webhookUrl = this.webhookConfig.connections;
-                break;
-        }
-
+        const params = { "embeds": [embed] };
+        this.logger.logWarning(params);
         const pluginScript = importNamespace('IW4MAdmin.Application.Plugin.Script');
-        const request = new pluginScript.ScriptPluginWebRequest(webhookUrl,
-            JSON.stringify(params), 'POST', 'application/json', null);
+        const request = new pluginScript.ScriptPluginWebRequest(
+            webhookUrl,
+            JSON.stringify(params),
+            'POST',
+            'application/json',
+            null
+        );
+        this.logger.logWarning(request);
 
         this.scriptHelper.requestUrl(request, (response) => {
-            if (response.isError !== undefined) this.logger.logWarning('There was a problem sending this webhook: {@Error}', response);
+            if (response.isError !== undefined) {
+                this.logger.logWarning('There was a problem sending this webhook: {@Error}', response);
+            }
         });
     },
 
     getNameAndUrl: function (client) {
-        let adminName;
-        if (client.cleanedName === "IW4MAdmin") {
-            adminName = "`IW4MAdmin`";
-        } else {
-            adminName = `[${client.cleanedName}](${this.baseUrl}/client/profileasync/${client.clientId})`;
-        }
-        return adminName;
+        if (!client) return "`Unknown`";
+        let adminName = client.cleanedName || client.currentAlias.name.stripColors();
+        return adminName === "IW4MAdmin"
+            ? "`IW4MAdmin`"
+            : `[${adminName}](${this.baseUrl}/client/profileasync/${client.clientId})`;
     },
 
     timeFormat: function (time) {
-        let splitTime = time.includes(".") ? time.split(/[.:]+/) : time.split(":");
-        let [days, hours, minutes, seconds] = [null, null, null, null];
+        if (typeof time !== 'number') return 'N/A';
 
-        if (splitTime.length >= 4) {
-            days = parseInt(splitTime[splitTime.length - 4]);
-            days = days > 0 ? `${days} day${days === 1 ? '' : 's'} ` : '';
-        }
+        const seconds = Math.floor(time % 60);
+        const minutes = Math.floor((time / 60) % 60);
+        const hours = Math.floor((time / 3600) % 24);
+        const days = Math.floor(time / 86400);
 
-        if (splitTime.length >= 3) {
-            hours = parseInt(splitTime[splitTime.length - 3]);
-            hours = hours > 0 ? `${hours} hour${hours === 1 ? '' : 's'} ` : '';
-        }
+        const timeComponents = [];
+        if (days) timeComponents.push(`${days} day${days > 1 ? 's' : ''}`);
+        if (hours) timeComponents.push(`${hours} hour${hours > 1 ? 's' : ''}`);
+        if (minutes) timeComponents.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
+        if (seconds) timeComponents.push(`${seconds} second${seconds > 1 ? 's' : ''}`);
 
-        if (splitTime.length >= 2) {
-            minutes = parseInt(splitTime[splitTime.length - 2]);
-            minutes = minutes > 0 ? `${minutes} minute${minutes === 1 ? '' : 's'} ` : '';
-        }
-
-        if (splitTime.length >= 1) {
-            seconds = parseInt(splitTime[splitTime.length - 1]);
-            seconds = seconds > 0 ? `${seconds} second${seconds === 1 ? '' : 's'} ` : '';
-        }
-
-        return `${days || ''}${hours || ''}${minutes || ''}${seconds || ''}`.trim();
+        return timeComponents.join(' ') || 'N/A';
     },
 
-
-    gameInfo: function (server) {
-        const games = {
-            "CoD4x Parser": {
-                name: "CoD4x",
-                iconUrl: "http://orig05.deviantart.net/8749/f/2008/055/0/c/call_of_duty_4__dock_icon_by_watts240.png",
-                color: 6723840
-            },
-            "H1-Mod Parser": {
-                name: "H1-Mod",
-                iconUrl: "https://i.ibb.co/zS4pc0B/166013016241761317.png",
-                color: 6723844
-            },
-            "IW4x Parser": {
-                name: "IW4x",
-                iconUrl: "https://i.gyazo.com/758b6933287392106bfdddc24b09d502.png",
-                color: 11331072
-            },
-            "Tekno MW3 Parser": {
-                name: "TeknoMW3",
-                iconUrl: "https://orig00.deviantart.net/9af1/f/2011/310/2/1/modern_warfare_3_logo_by_wifsimster-d4f9ozd.png",
-                color: 39219
-            },
-            "Plutonium IW5 Parser": {
-                name: "PlutoIW5",
-                iconUrl: "https://orig00.deviantart.net/9af1/f/2011/310/2/1/modern_warfare_3_logo_by_wifsimster-d4f9ozd.png",
-                color: 39219
-            },
-            "IW6x Parser": {
-                name: "IW6x",
-                iconUrl: "https://i.gyazo.com/82b84341e141f6420db6c6ef1d9037bb.png",
-                color: 39321
-            },
-            "Plutonium T4 MP Parser": {
-                name: "PlutoT4",
-                iconUrl: "https://i.gyazo.com/1e1987d84038aae38610cab9c999868d.png",
-                color: 7829308
-            },
-            "Plutonium T4 CO-OP/Zombies Parser": {
-                name: "PlutoT4 Singleplayer",
-                iconUrl: "https://i.gyazo.com/1e1987d84038aae38610cab9c999868d.png",
-                color: 7829308
-            },
-            "RektT5m Parser": {
-                name: "RektT5M",
-                iconUrl: "https://i.gyazo.com/a8a22764fafd4cc178329717b9bb35dd.png",
-                color: 6064778
-            },
-            "Plutonium T5 Parser": {
-                name: "PlutoT5",
-                iconUrl: "https://i.gyazo.com/a8a22764fafd4cc178329717b9bb35dd.png",
-                color: 6064778
-            },
-            "Plutonium T6 Parser": {
-                name: "PlutoT6",
-                iconUrl: "https://i.gyazo.com/5a445c5c733c698b32732550ec797e91.png",
-                color: 15108608
-            },
-            "Black Ops 3 Parser": {
-                name: "Call of Duty: Black Ops III",
-                iconUrl: "https://i.gyazo.com/5691ca84d47e219cdec76901ff142159.png",
-                color: 16737792
-            },
-            "BOIII Parser": {
-                name: "BOIII",
-                iconUrl: "https://i.imgur.com/nIi5QFP.jpg",
-                color: 16737792
-            },
-            "S1x Parser": {
-                name: "SHG1",
-                iconUrl: "https://i.gyazo.com/d524bf93e1fc38fa46f8fe1ed5162493.png",
-                color: 13421568
-            },
-            "CS:GO Parser": {
-                name: "CSGO",
-                iconUrl: "https://www.freeiconspng.com/uploads/csgo-icon-4.png",
-                color: 1911881
-            },
-            "CS:GO (SourceMod) Parser": {
-                name: "CSGO (SourceMod)",
-                iconUrl: "https://www.freeiconspng.com/uploads/csgo-icon-4.png",
-                color: 1911881
-            }
-        };
-
-        const defaultGame = {
+    // Function to retrieve game information
+    getGameInfo: function (server) {
+        const game = GAME_INFO[server.rconParser.name];
+        return game || {
             name: "Not Supported Game",
             iconUrl: "https://www.freeiconspng.com/uploads/csgo-icon-4.png",
-            color: "0000000"
+            color: "0000000",
         };
-
-        const game = games[owner.eventParser.name] || defaultGame;
-
-        return {game: game.name, iconUrl: game.iconUrl, color: game.color};
     },
 
-    getMapThumb: (server) => {
-        const defaultIconUrl = "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
+    getMapThumb: function (server) {
+        const gameCode = server.gameCode === "H1" ? "IW3" : server.gameCode;
+        const mapName = server.currentMap.name;
 
-        let gameCode = server.gameCode;
-        if (server.gameCode === "H1") gameCode = "IW3";
+        return MAP_URLS[gameCode]?.[mapName] || "https://cdn0.iconfinder.com/data/icons/flat-design-basic-set-1/24/error-exclamation-512.png";
+    },
+};
 
-        if (mapUrls.hasOwnProperty(gameCode) && mapUrls[gameCode].hasOwnProperty(server.currentMap.name)) {
-            return mapUrls[gameCode][server.currentMap.name];
-        } else {
-            return defaultIconUrl;
-        }
+const GAME_INFO = {
+    "CoD4x Parser": {
+        name: "CoD4x",
+        iconUrl: "http://orig05.deviantart.net/8749/f/2008/055/0/c/call_of_duty_4__dock_icon_by_watts240.png",
+        color: 6723840
+    },
+    "H1-Mod Parser": {
+        name: "H1-Mod",
+        iconUrl: "https://i.ibb.co/zS4pc0B/166013016241761317.png",
+        color: 6723844
+    },
+    "IW4x Parser": {
+        name: "IW4x",
+        iconUrl: "https://i.gyazo.com/758b6933287392106bfdddc24b09d502.png",
+        color: 11331072
+    },
+    "Tekno MW3 Parser": {
+        name: "TeknoMW3",
+        iconUrl: "https://orig00.deviantart.net/9af1/f/2011/310/2/1/modern_warfare_3_logo_by_wifsimster-d4f9ozd.png",
+        color: 39219
+    },
+    "Plutonium IW5 Parser": {
+        name: "PlutoIW5",
+        iconUrl: "https://orig00.deviantart.net/9af1/f/2011/310/2/1/modern_warfare_3_logo_by_wifsimster-d4f9ozd.png",
+        color: 39219
+    },
+    "IW6x Parser": {
+        name: "IW6x",
+        iconUrl: "https://i.gyazo.com/82b84341e141f6420db6c6ef1d9037bb.png",
+        color: 39321
+    },
+    "Plutonium T4 MP Parser": {
+        name: "PlutoT4",
+        iconUrl: "https://i.gyazo.com/1e1987d84038aae38610cab9c999868d.png",
+        color: 7829308
+    },
+    "Plutonium T4 CO-OP/Zombies Parser": {
+        name: "PlutoT4 Singleplayer",
+        iconUrl: "https://i.gyazo.com/1e1987d84038aae38610cab9c999868d.png",
+        color: 7829308
+    },
+    "RektT5m Parser": {
+        name: "RektT5M",
+        iconUrl: "https://i.gyazo.com/a8a22764fafd4cc178329717b9bb35dd.png",
+        color: 6064778
+    },
+    "Plutonium T5 Parser": {
+        name: "PlutoT5",
+        iconUrl: "https://i.gyazo.com/a8a22764fafd4cc178329717b9bb35dd.png",
+        color: 6064778
+    },
+    "Plutonium T6 Parser": {
+        name: "PlutoT6",
+        iconUrl: "https://i.gyazo.com/5a445c5c733c698b32732550ec797e91.png",
+        color: 15108608
+    },
+    "Black Ops 3 Parser": {
+        name: "Call of Duty: Black Ops III",
+        iconUrl: "https://i.gyazo.com/5691ca84d47e219cdec76901ff142159.png",
+        color: 16737792
+    },
+    "BOIII Parser": {
+        name: "BOIII",
+        iconUrl: "https://i.imgur.com/nIi5QFP.jpg",
+        color: 16737792
+    },
+    "S1x Parser": {
+        name: "SHG1",
+        iconUrl: "https://i.gyazo.com/d524bf93e1fc38fa46f8fe1ed5162493.png",
+        color: 13421568
+    },
+    "CS:GO Parser": {
+        name: "CSGO",
+        iconUrl: "https://www.freeiconspng.com/uploads/csgo-icon-4.png",
+        color: 1911881
+    },
+    "CS:GO (SourceMod) Parser": {
+        name: "CSGO (SourceMod)",
+        iconUrl: "https://www.freeiconspng.com/uploads/csgo-icon-4.png",
+        color: 1911881
     }
 };
 
-const mapUrls = {
+const MAP_URLS = {
     "IW3": {
         "mp_convoy": "https://static.wikia.nocookie.net/callofduty/images/3/3c/Bare_Load_Screen_Ambush_CoD4.jpg/revision/latest?cb=20100723075603",
         "mp_backlot": "https://static.wikia.nocookie.net/callofduty/images/0/0f/Backlot_loadscreen_CoD4.jpg/revision/latest?cb=20100723075613",
