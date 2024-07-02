@@ -80,16 +80,10 @@ const plugin = {
         // Simplify webhook config initialization
         const webhookKeys = ["reports", "bans", "status", "say", "connections"];
         for (const key of webhookKeys) {
-            this.logger.logWarning(key);
-            this.logger.logWarning(`${key.charAt(0).toUpperCase() + key.slice(1)}Webhook`);
             this.webhookConfig[key] = this.configHandler.getValue(`${key.charAt(0).toUpperCase() + key.slice(1)}Webhook`, webhook => plugin.webhookConfig[key] = webhook);
-            this.logger.logInformation(this.webhookConfig[key]);
 
             if (this.webhookConfig[key] === undefined) {
-                this.configHandler.setValue(
-                    `${key.charAt(0).toUpperCase() + key.slice(1)}Webhook`,
-                    `your_${key}_webhook_url`
-                );
+                this.configHandler.setValue(`${key.charAt(0).toUpperCase() + key.slice(1)}Webhook`, `your_${key}_webhook_url`);
             }
         }
 
@@ -126,7 +120,6 @@ const plugin = {
     // Helper function to send connection/disconnection embeds
     sendConnectionEmbed: function (client, description, color) {
         const server = client.currentServer;
-        this.logger.logInformation(server);
         const embed = {
             "author": {
                 "name": this.getGameInfo(server).game,
@@ -140,8 +133,6 @@ const plugin = {
                 "text": server.serverName.stripColors(),
             },
         };
-
-        this.logger.logInformation(embed);
 
         this.sendWebHook(embed, "connections");
     },
@@ -286,11 +277,9 @@ const plugin = {
 
     sendWebHook: function (embed, webhookType) {
         const webhookUrl = this.webhookConfig[webhookType];
-        this.logger.logWarning(webhookUrl);
         if (!webhookUrl) return;
 
         const params = { "embeds": [embed] };
-        this.logger.logWarning(params);
         const pluginScript = importNamespace('IW4MAdmin.Application.Plugin.Script');
         const request = new pluginScript.ScriptPluginWebRequest(
             webhookUrl,
@@ -299,7 +288,6 @@ const plugin = {
             'application/json',
             null
         );
-        this.logger.logWarning(request);
 
         this.scriptHelper.requestUrl(request, (response) => {
             if (response.isError !== undefined) {
